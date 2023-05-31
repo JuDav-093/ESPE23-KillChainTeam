@@ -35,7 +35,7 @@ public class Purchase {
         purchasedClothes.setName(keyboardInput.nextLine());
         purchasedClothes.setModel(keyboardInput.nextLine());
         purchasedClothes.setQuantity(keyboardInput.nextInt());
-        purchasedClothes.setIndividualPrice(keyboardInput.nextDouble());
+        purchasedClothes.setIndividualCost(keyboardInput.nextDouble());
         setCost(purchasedClothes.getTotalPrice());
         clothes.add(purchasedClothes);
     }

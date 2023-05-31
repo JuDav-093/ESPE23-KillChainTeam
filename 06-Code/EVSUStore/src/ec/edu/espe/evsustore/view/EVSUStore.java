@@ -15,21 +15,6 @@ public class EVSUStore {
         Inventory inventory = new Inventory(hardwareComponents, clothes);
         Purchase purchase = new Purchase(hardwareComponents, clothes);
         
-        System.out.println("Inventario antes de comprar");
-        
-        System.out.println(inventory);
-        
-        purchase.toPurchaseHardwareComponents(hardwareComponents);
-        
-        System.out.println("Inventario despues de comprar hc");
-        
-        System.out.println(inventory);
-        
-        System.out.println("Inventario despues de comprar hc y ropa");
-        
-        purchase.toPurchaseClothing(clothes);
-        
-        System.out.println(inventory);
     }
     
 }
