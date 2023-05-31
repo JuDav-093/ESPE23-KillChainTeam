@@ -1,11 +1,10 @@
-
 package ec.edu.espe.evsustore.model;
 
 /**
  *
  * @author Joan Cobeña, KillChain, DCCO-ESPE
  */
-public class HardwareComponent {
+public class Clothing {
     private int id;
     private double individualPrice;
     private double totalPrice;
@@ -13,22 +12,22 @@ public class HardwareComponent {
     private String name;
     private String model;
 
+    public Clothing() {
+    }
+
+    public Clothing(int id, double individualPrice, double totalPrice, int quantity, String model) {
+        this.id = id;
+        this.individualPrice = individualPrice;
+        this.totalPrice = totalPrice;
+        this.quantity = quantity;
+        this.model = model;
+    }
+    
     @Override
     public String toString() {
         return id + " // " + name + " " + model + " //Cantidad: " + quantity + 
                 " //Costo de cada unidad: " + individualPrice + 
                 " //Costo total: " + totalPrice +"\n";
-    }
-    
-    public HardwareComponent() {
-    }
-    
-    public HardwareComponent(int id, double price, int quantity, String model) {
-        this.id = id;
-        this.individualPrice = price;
-        this.quantity = quantity;
-        this.model = model;
-        setTotalPrice();
     }
     
     public void setTotalPrice() {

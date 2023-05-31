@@ -1,23 +1,74 @@
 package ec.edu.espe.evsustore.model;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
  * @author Joan Cobeña, KillChain, DCCO-ESPE
  */
 public class Purchase {
-    private HardwareComponent hardwareComponents[];
-    private Date purchaseDate;
+    private ArrayList <HardwareComponent> hardwareComponents;
+    private ArrayList <Clothing> clothes;
+    private LocalDate purchaseDate;
     private double cost;
 
     public Purchase() {
+        
     }
 
-    public Purchase(HardwareComponent[] hardwareComponents, Date purchaseDate, double cost) {
+    public Purchase(ArrayList<HardwareComponent> hardwareComponents, ArrayList<Clothing> clothes) {
         this.hardwareComponents = hardwareComponents;
-        this.purchaseDate = purchaseDate;
-        this.cost = cost;
+        this.clothes = clothes;
     }
     
+    public void toPurchaseHardwareComponents(ArrayList <HardwareComponent> hardwareComponents){
+        Scanner keyboardInput = new Scanner(System.in);
+        HardwareComponent purchasedHardwareComponents = new HardwareComponent();
+        purchasedHardwareComponents.setId();
+        purchasedHardwareComponents.setName(keyboardInput.next());
+        purchasedHardwareComponents.setModel(keyboardInput.next());
+        purchasedHardwareComponents.setQuantity(keyboardInput.nextInt());
+        purchasedHardwareComponents.setIndividualPrice(keyboardInput.nextDouble());
+        setCost(purchasedHardwareComponents.getTotalPrice());
+        hardwareComponents.add(purchasedHardwareComponents);
+    }
+    
+    public void toPurchaseClothing(ArrayList <Clothing> clothes){
+        Scanner keyboardInput = new Scanner(System.in);
+        Clothing purchasedClothes = new Clothing();
+        purchasedClothes.setId();
+        purchasedClothes.setName(keyboardInput.nextLine());
+        purchasedClothes.setModel(keyboardInput.nextLine());
+        purchasedClothes.setQuantity(keyboardInput.nextInt());
+        purchasedClothes.setIndividualPrice(keyboardInput.nextDouble());
+        setCost(purchasedClothes.getTotalPrice());
+        clothes.add(purchasedClothes);
+    }
+
+    public ArrayList <HardwareComponent> getHardwareComponents(){
+        return hardwareComponents;
+    }
+
+    public void setHardwareComponents(ArrayList <HardwareComponent> hardwareComponents) {
+        this.hardwareComponents = hardwareComponents;
+    }
+
+    public LocalDate getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(LocalDate purchaseDate) {
+        this.purchaseDate = LocalDate.now();
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double productCost) {
+        this.cost += cost;
+    }
+
 }   
