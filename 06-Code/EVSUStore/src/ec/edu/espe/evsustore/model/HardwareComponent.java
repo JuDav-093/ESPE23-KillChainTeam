@@ -9,6 +9,8 @@ public class HardwareComponent {
     private int id;
     private double individualPrice;
     private double totalPrice;
+    private double individualCost;
+    private double totalCost;
     private int quantity;
     private String name;
     private String model;
@@ -16,8 +18,8 @@ public class HardwareComponent {
     @Override
     public String toString() {
         return id + " // " + name + " " + model + " //Cantidad: " + quantity + 
-                " //Costo de cada unidad: " + individualPrice + 
-                " //Costo total: " + totalPrice +"\n";
+                " //Costo de cada unidad: " + individualCost + 
+                " //Precio a vender cada unidad: " + individualPrice +"\n";
     }
     
     public HardwareComponent() {

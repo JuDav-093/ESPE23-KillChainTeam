@@ -23,16 +23,9 @@ public class Purchase {
         this.clothes = clothes;
     }
     
-    public void toPurchaseHardwareComponents(ArrayList <HardwareComponent> hardwareComponents){
-        Scanner keyboardInput = new Scanner(System.in);
-        HardwareComponent purchasedHardwareComponents = new HardwareComponent();
-        purchasedHardwareComponents.setId();
-        purchasedHardwareComponents.setName(keyboardInput.next());
-        purchasedHardwareComponents.setModel(keyboardInput.next());
-        purchasedHardwareComponents.setQuantity(keyboardInput.nextInt());
-        purchasedHardwareComponents.setIndividualPrice(keyboardInput.nextDouble());
-        setCost(purchasedHardwareComponents.getTotalPrice());
-        hardwareComponents.add(purchasedHardwareComponents);
+    public void toPurchaseHardwareComponents(ArrayList <HardwareComponent> hardwareComponents, HardwareComponent purchasedHardwareComponent){
+        setCost(purchasedHardwareComponent.getTotalPrice());
+        hardwareComponents.add(purchasedHardwareComponent);
     }
     
     public void toPurchaseClothing(ArrayList <Clothing> clothes){
