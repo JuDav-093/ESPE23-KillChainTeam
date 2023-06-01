@@ -1,7 +1,10 @@
 package ec.edu.espe.evsustore.view;
 
+import ec.edu.espe.evsustore.model.Clothing;
 import ec.edu.espe.evsustore.model.HardwareComponent;
+import ec.edu.espe.evsustore.model.Inventory;
 import ec.edu.espe.evsustore.model.Purchase;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -10,6 +13,9 @@ import java.util.Scanner;
  */
 public class UserInterface {
     Scanner keyboardInput = new Scanner(System.in);
+    ArrayList <HardwareComponent> hardwareComponents=new ArrayList();
+    ArrayList <Clothing> clothings=new ArrayList();
+    Inventory inventory = new Inventory(hardwareComponents,clothings);
     public void showMenu() {
         
         System.out.println("*********************************************************");
@@ -21,7 +27,8 @@ public class UserInterface {
         System.out.println("3.Realizar venta");
         System.out.println("4.Ver registors de compras");
         System.out.println("");
-        System.out.println("Escoja una opcion: ");
+        System.out.println("Escoja una opcion");
+        System.out.println("");
         System.out.println("*********************************************************");
     }
     
@@ -37,12 +44,80 @@ public class UserInterface {
         purchasedHardwareComponents.setQuantity(keyboardInput.nextInt());
         System.out.println("Ingrese el costo del componente: ");
         purchasedHardwareComponents.setIndividualCost(keyboardInput.nextDouble());
+        System.out.println("Ingrese el precio de venta del componte: ");
+        purchasedHardwareComponents.setIndividualPrice(keyboardInput.nextDouble());
+        
+        System.out.println(purchasedHardwareComponents);
         
         
         return purchasedHardwareComponents; 
-
+          
     }
     
+    public HardwareComponent createPurchaseClothing(){
+        Clothing purchaseClothing = new ;
+        purchasedHardwareComponents.setId();
+        System.out.println("Ingrese el nombre del componente: ");
+        purchasedHardwareComponents.setName(keyboardInput.nextLine());
+        System.out.println("Ingrese el modelo del componente: ");
+        purchasedHardwareComponents.setModel(keyboardInput.nextLine());
+        System.out.println("Ingrese el cantidad del componente: ");
+        purchasedHardwareComponents.setQuantity(keyboardInput.nextInt());
+        System.out.println("Ingrese el costo del componente: ");
+        purchasedHardwareComponents.setIndividualCost(keyboardInput.nextDouble());
+        System.out.println("Ingrese el precio de venta del componte: ");
+        purchasedHardwareComponents.setIndividualPrice(keyboardInput.nextDouble());
+        
+        System.out.println(purchased);
+        
+        
+        return purchasedHardwareComponents; 
+          
+    }
+    
+    
+    public void selecOption(){
+        while (true) {
+            showMenu();
+            Scanner scanner = new Scanner(System.in);
+            int option = scanner.nextInt();
+            
+            switch (option) {
+                case 1 -> {
+                    
+                    Purchase purchase=new Purchase(hardwareComponents,clothings);
+                    System.out.println(inventory);
+                    purchase.toPurchaseHardwareComponents(hardwareComponents,createPurchase());
+                    System.out.println(purchase);
+                    System.out.println(inventory);
+                    
+                }
+                case 2 -> {
+                    
+                   /* List<Triangle> triangles = fileHandler.readData();
+                    for (Triangle t : triangles) {
+                        System.out.println("Base: " + t.getBase() + ", Height: " + t.getHeight() + ", Side1: " + t.getSideOne()
+                                + ", Side2: " + t.getSideTwo() + ", Side3: " + t.getSideThree()
+                                + ", Área: " + t.calculateArea() + ", Perímetro: " + t.calculatePerimeter());
+                    }*/
+                    System.out.println("Ver producto");
+                   
+                }
+                case 3 -> {
+                    
+                    System.out.println("Hacer compra");
+                }
+                case 4 -> {
+                    System.out.println("Ver registro");
+                }
+                case 5 -> {
+                    scanner.close();
+                    return;
+                }
+                default -> System.out.println("Opción inválida");
+            }
+        }
+    }
     
    
 }

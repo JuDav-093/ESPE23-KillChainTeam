@@ -29,14 +29,7 @@ public class Purchase {
     }
     
     public void toPurchaseClothing(ArrayList <Clothing> clothes){
-        Scanner keyboardInput = new Scanner(System.in);
         Clothing purchasedClothes = new Clothing();
-        purchasedClothes.setId();
-        purchasedClothes.setName(keyboardInput.nextLine());
-        purchasedClothes.setModel(keyboardInput.nextLine());
-        purchasedClothes.setQuantity(keyboardInput.nextInt());
-        purchasedClothes.setIndividualCost(keyboardInput.nextDouble());
-        setCost(purchasedClothes.getTotalPrice());
         clothes.add(purchasedClothes);
     }
 
