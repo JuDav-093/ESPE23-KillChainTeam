@@ -18,6 +18,10 @@ public class UserInterface {
     ArrayList<Clothing> clothes = new ArrayList<>();
     SalesRegister salesRegister = new SalesRegister();
     
+<<<<<<< HEAD
+=======
+   
+>>>>>>> c87100ccf41e5d5a3a9d5ecb452df5d2f9b1d337
     public void showMenu() {
         
         System.out.println("*********************************************************");
@@ -52,8 +56,12 @@ public class UserInterface {
                 }
                 case 2 -> {
                     
+<<<<<<< HEAD
                     System.out.println(purchaseInterface.getInventory());
                    
+=======
+                    System.out.println("Ventas");
+>>>>>>> c87100ccf41e5d5a3a9d5ecb452df5d2f9b1d337
                    
                 }
                 case 3 -> {
