@@ -33,42 +33,46 @@ public class HardwareComponent {
         setTotalPrice();
     }
     
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-    
     public void setTotalPrice() {
         totalPrice = individualPrice*quantity;
     }
     
-    public void setIndividualCost(double individualCost) {
-        this.individualCost = individualCost;
+    public int getId() {
+        return id;
     }
-    
+
     public double getIndividualCost() {
         return individualCost;
     }
 
-    public void setTotalCost(double totalCost) {
-        totalCost = individualCost*quantity;
-    }
-    
     public double getTotalCost() {
         return totalCost;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setIndividualCost(double individualCost) {
+        this.individualCost = individualCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
     }
     
     public void setId() {
         this.id = generateId();
     }
     
-    public int getId() {
-        return id;
-    }
-    
     public int generateId() {
-        JsonFileManager idFile = new JsonFileManager();
-        idFile.setFileName("Inventory");
-        return idFile.searchComponentId();
+        int i = 0;
+        i++;
+        return i;
     }
 
     public double getIndividualPrice() {
@@ -102,6 +106,10 @@ public class HardwareComponent {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
     }
     
 }
