@@ -25,8 +25,8 @@ public class Order {
     }
 
     public Order(ArrayList <HardwareComponent> orderedComponents, 
-            ArrayList <Clothing> orderedClothing , int orderId, 
-            Customer customer, boolean isPaid) {
+            ArrayList <Clothing> orderedClothing , ArrayList <Sale> sales, 
+            int orderId, Customer customer, boolean isPaid) {
         
         this.orderId = orderId;
         this.customer = customer;
@@ -46,7 +46,12 @@ public class Order {
         return price;
     }
     
-    
+    public void generateASale(){
+        if(isPaid){
+            sales.add(new Sale(orderedComponents, orderedClothing, 
+                    customer,orderPrice));
+        }
+    }
     
     public boolean verifyPayMethods(int payOption){
         if(payOption==1){

@@ -16,8 +16,6 @@ public class Inventory {
         return "INVENTARIO \n Componentes de Hardware: \n" + hardwareComponents 
                 + "\n Ropa: \n" + clothes;
     }
-    
-    
 
     public Inventory(ArrayList <HardwareComponent> hardwareComponents, ArrayList <Clothing> clothes) {
         this.hardwareComponents = hardwareComponents;
@@ -39,8 +37,5 @@ public class Inventory {
     public void setClothes(ArrayList <Clothing> clothes) {
         this.clothes = clothes;
     }
-    
-    
-    
     
 }

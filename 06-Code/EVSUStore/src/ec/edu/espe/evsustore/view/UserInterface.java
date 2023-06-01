@@ -1,6 +1,7 @@
 package ec.edu.espe.evsustore.view;
 
 import ec.edu.espe.evsustore.model.Clothing;
+import ec.edu.espe.evsustore.model.FileManager;
 import ec.edu.espe.evsustore.model.HardwareComponent;
 import ec.edu.espe.evsustore.model.Inventory;
 import ec.edu.espe.evsustore.model.Purchase;
@@ -54,8 +55,8 @@ public class UserInterface {
           
     }
     
-    public HardwareComponent createPurchaseClothing(){
-        Clothing purchaseClothing = new ;
+    /*public HardwareComponent createPurchaseClothing(){
+        Clothing purchaseClothing = new Clothing();
         purchasedHardwareComponents.setId();
         System.out.println("Ingrese el nombre del componente: ");
         purchasedHardwareComponents.setName(keyboardInput.nextLine());
@@ -73,23 +74,22 @@ public class UserInterface {
         
         return purchasedHardwareComponents; 
           
-    }
+    }*/
     
     
     public void selecOption(){
         while (true) {
+            Purchase purchase=new Purchase(hardwareComponents,clothings);
+            FileManager jsonFile = new FileManager();
+            jsonFile.setFileName("TEST1JSON");
             showMenu();
             Scanner scanner = new Scanner(System.in);
             int option = scanner.nextInt();
-            
             switch (option) {
                 case 1 -> {
-                    
-                    Purchase purchase=new Purchase(hardwareComponents,clothings);
-                    System.out.println(inventory);
                     purchase.toPurchaseHardwareComponents(hardwareComponents,createPurchase());
-                    System.out.println(purchase);
-                    System.out.println(inventory);
+                    
+                    jsonFile.write(inventory);
                     
                 }
                 case 2 -> {

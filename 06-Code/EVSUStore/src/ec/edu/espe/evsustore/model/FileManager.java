@@ -2,8 +2,10 @@ package ec.edu.espe.evsustore.model;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -32,12 +34,12 @@ public class FileManager {
         }
     }
     
-    public void write(ArrayList <Inventory> inventory){
+    public void write(Inventory inventory){
         File file = new File(fileName + ".json");
         String dataReaded;
         if (file.exists()){
             dataReaded = readData();
-            writeIfFileExists(inventory);
+            writeIfFileExists(inventory, dataReaded);
         }
         else{
             create();
@@ -45,7 +47,7 @@ public class FileManager {
         }
         
     }
-    public void writeIfFileDoesntExists(ArrayList <Inventory> inventory){
+    public void writeIfFileDoesntExists(Inventory inventory){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
             Gson gson = new Gson();
@@ -58,16 +60,32 @@ public class FileManager {
         }
         
     }
-    public void writeIfFileExists(ArrayList <Inventory> inventory, String dataReaded){
+    public void writeIfFileExists(Inventory currentInventory, String dataReaded){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
             Gson gson = new Gson();
-            Type inventoryListType = new TypeToken<ArrayList<Inventory>>(){}.getType();
-            ArrayList<Inventory> stock = gson.fromJson(dataReaded, inventoryListType);
+            Type Inventory = new TypeToken<Inventory>(){}.getType();
+            Inventory savedInventory = gson.fromJson(dataReaded, Inventory);
+            HardwareComponent lastComponent = new HardwareComponent();
+            Clothing lastClothing = new Clothing();
+            int maxSavedIndex;
+            int maxCurrentIndex;
             
+            maxSavedIndex = savedInventory.getHardwareComponents().lastIndexOf(lastComponent);
+            maxCurrentIndex = currentInventory.getHardwareComponents().size()-1;
+                    
+            for(HardwareComponent component: currentInventory.getHardwareComponents().subList(maxSavedIndex, maxCurrentIndex)){
+                savedInventory.getHardwareComponents().add(component);
+            }
             
+            maxSavedIndex = savedInventory.getClothes().lastIndexOf(lastComponent);
+            maxCurrentIndex = currentInventory.getClothes().size()-1;
+            
+            for(Clothing cloth: currentInventory.getClothes().subList(maxSavedIndex, maxCurrentIndex)){
+                savedInventory.getClothes().add(cloth);
+            }
 
-            writer.write(gson.toJson(stock));
+            writer.write(gson.toJson(savedInventory));
             writer.flush();
             
         } 
@@ -76,9 +94,26 @@ public class FileManager {
         }
         
     }
+    
+    public String readData() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName + ".json"))) {
+            String content = "";
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content += line;
+            }
+            return content;
+        } catch (IOException e) {
+                System.out.println("Hubo un error al leer el archivo");
+            return "";
+        }
     }
-    
-    
-    
-    
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 }

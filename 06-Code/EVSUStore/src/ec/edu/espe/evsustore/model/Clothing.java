@@ -24,7 +24,8 @@ public class Clothing {
     public Clothing() {
     }
 
-    public Clothing(int id, double individualPrice, double totalPrice, int quantity, String model) {
+    public Clothing(int id, double individualPrice, double totalPrice, 
+            int quantity, String model) {
         this.id = id;
         this.individualPrice = individualPrice;
         this.totalPrice = totalPrice;
