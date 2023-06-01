@@ -14,7 +14,7 @@ public class HardwareComponent {
     private int quantity;
     private String name;
     private String model;
-
+    
     @Override
     public String toString() {
         return id + " // " + name + " " + model + " //Cantidad: " + quantity + 
@@ -39,6 +39,30 @@ public class HardwareComponent {
     
     public int getId() {
         return id;
+    }
+
+    public double getIndividualCost() {
+        return individualCost;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setIndividualCost(double individualCost) {
+        this.individualCost = individualCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
     }
     
     public void setId() {
