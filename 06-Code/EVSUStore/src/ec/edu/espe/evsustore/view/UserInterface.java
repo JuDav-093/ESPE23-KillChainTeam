@@ -16,6 +16,7 @@ public class UserInterface {
     ArrayList <HardwareComponent> hardwareComponents=new ArrayList();
     InputHandler keyboardInput = new InputHandler();
     ArrayList <Clothing> clothings=new ArrayList();
+    Scanner scanner = new Scanner(System.in);
     Inventory inventory = new Inventory(hardwareComponents,clothings);
     public void showMenu() {
         
@@ -56,15 +57,9 @@ public class UserInterface {
           
     }
     
-<<<<<<< Updated upstream
-    /*public HardwareComponent createPurchaseClothing(){
-        Clothing purchaseClothing = new Clothing();
-        purchasedHardwareComponents.setId();
-=======
     public Clothing createPurchaseClothing(){
         Clothing purchaseClothings = new Clothing();
         purchaseClothings.setId();
->>>>>>> Stashed changes
         System.out.println("Ingrese el nombre del componente: ");
         purchaseClothings.setName(keyboardInput.nextLine());
         System.out.println("Ingrese el modelo del componente: ");
@@ -81,7 +76,7 @@ public class UserInterface {
         
         return purchaseClothings; 
           
-    }*/
+    }
     
     public void menuPurchase(){
         System.out.println("*********************************************************");
@@ -100,7 +95,6 @@ public class UserInterface {
     public void handlePurchase() {
         while (true) {
             menuPurchase();
-            
             int purchaseOption = keyboardInput.nextInt();
             switch (purchaseOption) {
                 case 1 -> {
@@ -135,18 +129,14 @@ public class UserInterface {
             FileManager jsonFile = new FileManager();
             jsonFile.setFileName("TEST1JSON");
             showMenu();
-            Scanner scanner = new Scanner(System.in);
+            
             int option = scanner.nextInt();
             switch (option) {
                 case 1 -> {
-<<<<<<< Updated upstream
-                    purchase.toPurchaseHardwareComponents(hardwareComponents,createPurchase());
-                    
-                    jsonFile.write(inventory);
-=======
-                    
                     handlePurchase();
->>>>>>> Stashed changes
+                    jsonFile.write(inventory);             
+                    
+
                     
                 }
                 case 2 -> {
