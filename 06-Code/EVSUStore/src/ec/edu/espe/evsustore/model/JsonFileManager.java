@@ -15,8 +15,15 @@ import java.util.ArrayList;
  *
  * @author Joan Cobeña, KillChain, DCCO-ESPE
  */
-public class FileManager {
+public class JsonFileManager {
     private String fileName;
+
+    public JsonFileManager() {
+    }
+
+    public JsonFileManager(String fileName) {
+        this.fileName = fileName;
+    }
     
     public void createInventoryFile(){
         try {
@@ -45,7 +52,6 @@ public class FileManager {
             createInventoryFile();
             writeIfInventoryFileDoesntExists(inventory);
         }
-        
     }
     public void writeIfInventoryFileDoesntExists(Inventory inventory){
         try {
@@ -66,7 +72,6 @@ public class FileManager {
             Gson gson = new Gson();
             Type Inventory = new TypeToken<Inventory>(){}.getType();
             Inventory savedInventory = gson.fromJson(dataReaded, Inventory);
-            HardwareComponent hardwareComp = new HardwareComponent();
             
             for(int i=currentInventory.getHardwareComponents().size()-1; i<currentInventory.getHardwareComponents().size();i++){
                 HardwareComponent component = currentInventory.getHardwareComponents().get(i);
@@ -82,7 +87,7 @@ public class FileManager {
         }
         
     }
-    /*
+    
     public void writeSalesRegisterFile(SalesRegister salesRegister){
         File file = new File(fileName + ".json");
         String dataReaded;
@@ -96,12 +101,12 @@ public class FileManager {
         }
         
     }
-    public void writeIfSalesRegisterDoesntExists(SalesRegister salesRegister){
+    public void writeIfSalesRegisterFileDoesntExists(SalesRegister salesRegister){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
             Gson gson = new Gson();
             
-            writer.write(gson.toJson(inventory));
+            writer.write(gson.toJson(salesRegister));
             writer.flush();
         } 
         catch (IOException ex) {
@@ -109,21 +114,20 @@ public class FileManager {
         }
     }
     
-    public void writeIfSalesRegisterExists(SalesRegister salesRegister, String dataReaded){
+    public void writeIfSalesRegisterFileExists(SalesRegister salesRegister, String dataReaded){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
             Gson gson = new Gson();
-            Type Inventory = new TypeToken<Inventory>(){}.getType();
-            Inventory savedInventory = gson.fromJson(dataReaded, Inventory);
-            HardwareComponent hardwareComp = new HardwareComponent();
+            Type SalesRegister = new TypeToken<SalesRegister>(){}.getType();
+            SalesRegister savedSalesRegister = gson.fromJson(dataReaded, SalesRegister);
             
-            for(int i=currentInventory.getHardwareComponents().size()-1; i<currentInventory.getHardwareComponents().size();i++){
-                HardwareComponent component = currentInventory.getHardwareComponents().get(i);
-                int j = savedInventory.getHardwareComponents().size();
-                savedInventory.getHardwareComponents().add(j, component);
+            for(int i=salesRegister.getSales().size()-1; i<salesRegister.getSales().size();i++){
+                Sale sale = salesRegister.getSales().get(i);
+                int j = savedSalesRegister.getSales().size();
+                savedSalesRegister.getSales().add(j, sale);
             }
 
-            writer.write(gson.toJson(savedInventory));
+            writer.write(gson.toJson(savedSalesRegister));
             writer.flush();
         } 
         catch (IOException ex) {
@@ -131,8 +135,79 @@ public class FileManager {
         }
         
     }
-    */
     
+    public void writePurchaseRegisterFile(PurchaseRegister purchaseRegister){
+        File file = new File(fileName + ".json");
+        String dataReaded;
+        if (file.exists()){
+            dataReaded = readData();
+            writeIfPurchaseRegisterFileExists(purchaseRegister, dataReaded);
+        }
+        else{
+            createInventoryFile();
+            writeIfPurchaseRegisterFileDoesntExists(purchaseRegister);
+        }
+        
+    }
+    public void writeIfPurchaseRegisterFileDoesntExists(PurchaseRegister purchaseRegister){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
+            Gson gson = new Gson();
+            
+            writer.write(gson.toJson(purchaseRegister));
+            writer.flush();
+        } 
+        catch (IOException ex) {
+            System.out.println("Hubo un error al escribir el archivo");
+        }
+    }
+    
+    public void writeIfPurchaseRegisterFileExists(PurchaseRegister purchaseRegister, String dataReaded){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
+            Gson gson = new Gson();
+            Type PurchaseRegister = new TypeToken<PurchaseRegister>(){}.getType();
+            PurchaseRegister savedPurchaseRegister = gson.fromJson(dataReaded, PurchaseRegister);
+            
+            for(int i=purchaseRegister.getPurchases().size()-1; i<purchaseRegister.getPurchases().size();i++){
+                Purchase purchase = purchaseRegister.getPurchases().get(i);
+                int j = savedPurchaseRegister.getPurchases().size();
+                savedPurchaseRegister.getPurchases().add(j, purchase);
+            }
+
+            writer.write(gson.toJson(savedPurchaseRegister));
+            writer.flush();
+        } 
+        catch (IOException ex) {
+            System.out.println("Hubo un error al escribir el archivo");
+        }
+        
+    }
+    
+    public int searchComponentId(){
+        File file = new File(fileName + ".json");
+        String dataReaded;
+        int id;
+        
+        if (file.exists()){
+            dataReaded = readData();
+            return readId(dataReaded);
+        }
+        else{
+            return 1;
+        }
+    }
+    
+    public int readId(String dataReaded){
+        
+        Gson gson = new Gson();
+        Type Inventory = new TypeToken<Inventory>(){}.getType();
+        Inventory savedInventory = gson.fromJson(dataReaded, Inventory);
+        int LastId;
+        LastId = savedInventory.getHardwareComponents().size();
+        
+        return LastId;
+    }
     
     public String readData() {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName + ".json"))) {
@@ -155,4 +230,6 @@ public class FileManager {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
+    
+    
 }

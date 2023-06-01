@@ -1,7 +1,7 @@
 package ec.edu.espe.evsustore.view;
 
 import ec.edu.espe.evsustore.model.Clothing;
-import ec.edu.espe.evsustore.model.FileManager;
+import ec.edu.espe.evsustore.model.JsonFileManager;
 import ec.edu.espe.evsustore.model.HardwareComponent;
 import ec.edu.espe.evsustore.model.Inventory;
 import ec.edu.espe.evsustore.model.Purchase;
@@ -64,11 +64,11 @@ public class UserInterface {
         purchaseClothings.setName(keyboardInput.nextLine());
         System.out.println("Ingrese el modelo del componente: ");
         purchaseClothings.setModel(keyboardInput.nextLine());
-        System.out.println("Ingrese el cantidad del componente: ");
+        System.out.println("Ingrese la cantidad del componente: ");
         purchaseClothings.setQuantity(keyboardInput.nextInt());
-        System.out.println("Ingrese el costo del componente: ");
+        System.out.println("Ingrese el costo del componente por unidad: ");
         purchaseClothings.setIndividualCost(keyboardInput.nextDouble());
-        System.out.println("Ingrese el precio de venta del componte: ");
+        System.out.println("Ingrese el precio de venta del componente por unidad: ");
         purchaseClothings.setIndividualPrice(keyboardInput.nextDouble());
         
         System.out.println(purchaseClothings);
@@ -95,15 +95,14 @@ public class UserInterface {
     public void handlePurchase() {
         while (true) {
             menuPurchase();
+            Purchase purchase = new Purchase(hardwareComponents,clothings);
             int purchaseOption = keyboardInput.nextInt();
             switch (purchaseOption) {
                 case 1 -> {
-                    Purchase purchase = new Purchase(hardwareComponents,clothings);
                     purchase.toPurchaseHardwareComponents(hardwareComponents,createPurchase());
                     System.out.println(purchase);
                 }
                 case 2 -> {
-                    Purchase purchase = new Purchase(hardwareComponents,clothings);
                     purchase.toPurchaseClothing(clothings,createPurchaseClothing());
                     System.out.println(purchase);
                 }
@@ -125,24 +124,19 @@ public class UserInterface {
     
     public void selecOption(){
         while (true) {
-            Purchase purchase=new Purchase(hardwareComponents,clothings);
-            FileManager jsonFile = new FileManager();
-            jsonFile.setFileName("TEST1JSON");
+            JsonFileManager inventoryFile = new JsonFileManager("Inventory");
+            JsonFileManager purchaseRegister = new JsonFileManager("PurchaseRegister");
             showMenu();
             
             int option = scanner.nextInt();
             switch (option) {
                 case 1 -> {
-<<<<<<< HEAD
+
                     
-                    
-=======
-                    handlePurchase();
-                    jsonFile.write(inventory);             
                     
 
->>>>>>> ffb17918babd33cff19c11db7e8eede8e5066702
-                    
+                    handlePurchase();
+                    inventoryFile.writeInventoryFile(inventory);
                 }
                 case 2 -> {
                     
