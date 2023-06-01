@@ -17,7 +17,7 @@ public class UserInterface {
     ArrayList<Clothing> clothes = new ArrayList<>();
     Inventory inventory = new Inventory(hardwareComponents, clothes);
     
-    Catalog catalog = new Catalog(inventory);
+   
     public void showMenu() {
         
         System.out.println("*********************************************************");
@@ -54,7 +54,7 @@ public class UserInterface {
                 }
                 case 2 -> {
                     
-                   catalog.displayProducts();
+                    System.out.println("Ventas");
                    
                 }
                 case 3 -> {

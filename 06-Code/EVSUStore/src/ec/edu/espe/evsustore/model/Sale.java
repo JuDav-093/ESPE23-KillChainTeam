@@ -14,11 +14,10 @@ public class Sale {
     private Customer customer;
     private double salePrice;
 
-    public Sale() {
-    }
+
     
     public Sale(ArrayList<HardwareComponent> soldComponents, 
-            ArrayList<Clothing> soldClothing, Customer customer, double salePrice) {
+        ArrayList<Clothing> soldClothing, Customer customer, double salePrice) {
         this.soldComponents = soldComponents;
         this.soldClothing = soldClothing;
         this.saleId = generateId();
