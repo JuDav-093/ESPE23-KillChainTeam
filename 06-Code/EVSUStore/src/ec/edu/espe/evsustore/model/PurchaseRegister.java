@@ -10,6 +10,11 @@ import java.util.ArrayList;
 public class PurchaseRegister {
     private ArrayList <Purchase> purchases;
 
+    @Override
+    public String toString() {
+        return "PURCHASES: \n " + purchases +"\n";
+    }
+    
     public PurchaseRegister() {
     }
 
@@ -26,6 +31,6 @@ public class PurchaseRegister {
     }
     
     public void makeAPurchaseRegister(ArrayList<Purchase> purchases) {
-        this.purchases = purchases;
+        
     }
 }

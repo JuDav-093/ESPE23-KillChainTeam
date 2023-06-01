@@ -88,6 +88,22 @@ public class JsonFileManager {
         
     }
     
+    public void createSalesRegisterFile(){
+        try {
+            File file = new File(fileName + ".json");
+            
+            if(file.exists()){
+                
+            }
+            else if(file.createNewFile()){
+                System.out.println("El archivo se creo correctamente");
+            }
+        } 
+        catch (IOException ex) {
+            System.out.println("Hubo un error al crear el archivo");
+        }
+    }
+    
     public void writeSalesRegisterFile(SalesRegister salesRegister){
         File file = new File(fileName + ".json");
         String dataReaded;
@@ -96,7 +112,7 @@ public class JsonFileManager {
             writeIfSalesRegisterFileExists(salesRegister, dataReaded);
         }
         else{
-            createInventoryFile();
+            createSalesRegisterFile();
             writeIfSalesRegisterFileDoesntExists(salesRegister);
         }
         
@@ -144,7 +160,7 @@ public class JsonFileManager {
             writeIfPurchaseRegisterFileExists(purchaseRegister, dataReaded);
         }
         else{
-            createInventoryFile();
+            createPurchaseRegisterFile();
             writeIfPurchaseRegisterFileDoesntExists(purchaseRegister);
         }
         
@@ -182,6 +198,83 @@ public class JsonFileManager {
             System.out.println("Hubo un error al escribir el archivo");
         }
         
+    }
+    
+    public void createPurchaseRegisterFile(){
+        try {
+            File file = new File(fileName + ".json");
+            
+            if(file.exists()){
+                
+            }
+            else if(file.createNewFile()){
+                System.out.println("El archivo se creo correctamente");
+            }
+        } 
+        catch (IOException ex) {
+            System.out.println("Hubo un error al crear el archivo");
+        }
+    }
+    
+    public void updateInventory(Inventory inventory){
+        File file = new File(fileName + ".json");
+        String dataReaded;
+        if (file.exists()){
+            dataReaded = readData();
+            inventory = uptadteInventory(dataReaded);
+        }
+        else{
+            
+        }
+        
+    }
+    public Inventory uptadteInventory(String dataReaded){
+        Gson gson = new Gson();
+        Type Inventory = new TypeToken<Inventory>(){}.getType();
+        Inventory savedInventory = gson.fromJson(dataReaded, Inventory);
+        return savedInventory;
+    }
+    
+    
+    public void viewInventory(Inventory inventory){
+        File file = new File(fileName + ".json");
+        String dataReaded;
+        if (file.exists()){
+            dataReaded = readData();
+            showPurchaseRegister(dataReaded);
+        }
+        else{
+            
+        }
+        
+    }
+    
+    
+    public void showInventory(String dataReaded){
+        Gson gson = new Gson();
+        Type Inventory = new TypeToken<Inventory>(){}.getType();
+        Inventory savedInventory = gson.fromJson(dataReaded, Inventory);
+        System.out.println(savedInventory);
+    }
+    
+    public void viewPurchaseRegister(PurchaseRegister purchaseRegister){
+        File file = new File(fileName + ".json");
+        String dataReaded;
+        if (file.exists()){
+            dataReaded = readData();
+            showPurchaseRegister(dataReaded);
+        }
+        else{
+            
+        }
+        
+    }
+    
+    public void showPurchaseRegister(String dataReaded){
+        Gson gson = new Gson();
+        Type PurchaseRegister = new TypeToken<PurchaseRegister>(){}.getType();
+        PurchaseRegister savedPurchaseRegister = gson.fromJson(dataReaded, PurchaseRegister);
+        System.out.println(savedPurchaseRegister.getPurchases());
     }
     
     public int searchComponentId(){

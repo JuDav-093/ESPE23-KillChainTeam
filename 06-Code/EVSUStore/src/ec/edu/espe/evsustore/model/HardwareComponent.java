@@ -17,9 +17,9 @@ public class HardwareComponent {
     
     @Override
     public String toString() {
-        return id + " // " + name + " " + model + " //Cantidad: " + quantity + 
-                " //Costo de cada unidad: " + individualCost + 
-                " //Precio a vender cada unidad: " + individualPrice +"\n";
+        return id + " || " + name + " " + model + " || Cantidad: " + quantity + 
+                " || Costo de cada unidad: " + individualCost + 
+                " || Precio a vender cada unidad: " + individualPrice +"\n";
     }
     
     public HardwareComponent() {
@@ -46,15 +46,16 @@ public class HardwareComponent {
     }
 
     public double getTotalCost() {
+        calculateTotalCost();
         return totalCost;
     }
-
+    
+    public void calculateTotalCost() {
+        totalCost = individualCost*quantity;
+    }
+    
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
     }
 
     public void setIndividualCost(double individualCost) {

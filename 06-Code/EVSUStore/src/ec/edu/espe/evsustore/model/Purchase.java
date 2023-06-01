@@ -1,6 +1,5 @@
 package ec.edu.espe.evsustore.model;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -10,9 +9,13 @@ import java.util.ArrayList;
 public class Purchase {
     private ArrayList <HardwareComponent> hardwareComponents;
     private ArrayList <Clothing> clothes;
-    private LocalDate purchaseDate;
     private double cost;
 
+    @Override
+    public String toString() {
+        return "Componentes de Hardware: " + hardwareComponents + " || Ropa: " + clothes + " || Coste Total: " + cost + "\n";
+    }
+    
     public Purchase() {
         
     }
@@ -23,21 +26,16 @@ public class Purchase {
     }
     
     public void toPurchaseHardwareComponents(ArrayList <HardwareComponent> hardwareComponents, HardwareComponent purchasedHardwareComponent){
-        setCost(purchasedHardwareComponent.getTotalCost());
         hardwareComponents.add(purchasedHardwareComponent);
+        setCost(purchasedHardwareComponent.getTotalCost());
+        
     }
     
 
     public void toPurchaseClothing(ArrayList <Clothing> clothes, Clothing purchasedClothing){
-        setCost(purchasedClothing.getTotalCost());
         clothes.add(purchasedClothing);
+        setCost(purchasedClothing.getTotalCost());
         
-    }
-
-    public void toPurchaseClothing(ArrayList <Clothing> clothes){
-        Clothing purchasedClothes = new Clothing();
-        clothes.add(purchasedClothes);
-
     }
 
     public ArrayList <HardwareComponent> getHardwareComponents(){
@@ -48,20 +46,12 @@ public class Purchase {
         this.hardwareComponents = hardwareComponents;
     }
 
-    public LocalDate getPurchaseDate() {
-        return purchaseDate;
-    }
-
-    public void setPurchaseDate(LocalDate purchaseDate) {
-        this.purchaseDate = LocalDate.now();
-    }
-
     public double getCost() {
         return cost;
     }
 
-    public void setCost(double productCost) {
-        this.cost += cost;
+    public void setCost(double costCalculated) {
+        cost = costCalculated;
     }
 
 }   

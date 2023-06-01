@@ -1,9 +1,10 @@
 package ec.edu.espe.evsustore.view;
 
 import ec.edu.espe.evsustore.model.Clothing;
-import ec.edu.espe.evsustore.model.FileManager;
 import ec.edu.espe.evsustore.model.HardwareComponent;
 import ec.edu.espe.evsustore.model.Inventory;
+import ec.edu.espe.evsustore.model.JsonFileManager;
+import ec.edu.espe.evsustore.model.SalesRegister;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,9 +16,8 @@ public class UserInterface {
     Scanner scanner = new Scanner(System.in);
     ArrayList<HardwareComponent> hardwareComponents = new ArrayList<>();
     ArrayList<Clothing> clothes = new ArrayList<>();
-    Inventory inventory = new Inventory(hardwareComponents, clothes);
+    SalesRegister salesRegister = new SalesRegister();
     
-    Catalog catalog = new Catalog(inventory);
     public void showMenu() {
         
         System.out.println("*********************************************************");
@@ -27,7 +27,7 @@ public class UserInterface {
         System.out.println("1.Hacer compra ");
         System.out.println("2.Ver productos ");
         System.out.println("3.Realizar venta");
-        System.out.println("4.Ver registors de compras");
+        System.out.println("4.Ver registros de compras");
         System.out.println("5.Salir");
         System.out.println("");
         System.out.println("Escoja una opcion");
@@ -39,11 +39,9 @@ public class UserInterface {
 
     
     public void selecOption(){
+        PurchaseInterface purchaseInterface = new PurchaseInterface();
         while (true) {
-            PurchaseInterface purchaseInterface = new PurchaseInterface();
 
-            FileManager jsonFile = new FileManager();
-            jsonFile.setFileName("TEST1JSON");
             showMenu();
             
             int option = scanner.nextInt();
@@ -54,7 +52,8 @@ public class UserInterface {
                 }
                 case 2 -> {
                     
-                   catalog.displayProducts();
+                    System.out.println(purchaseInterface.getInventory());
+                   
                    
                 }
                 case 3 -> {
@@ -62,6 +61,8 @@ public class UserInterface {
                     System.out.println("Hacer compra");
                 }
                 case 4 -> {
+                    purchaseInterface.showRegisterOfSales();
+                            
                     System.out.println("Ver registro");
                 }
                 case 5 -> {

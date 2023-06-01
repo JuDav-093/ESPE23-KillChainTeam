@@ -15,7 +15,11 @@ import ec.edu.espe.evsustore.model.Inventory;
 
 public class Catalog {
     private Inventory inventory;
+    private ArrayList<HardwareComponent> hardwareComponents;
+    private ArrayList<Clothing>  clothes;
 
+    
+    
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
@@ -24,13 +28,13 @@ public class Catalog {
         return inventory;
     }
 
-    public Catalog(Inventory inventory) {
+    public Catalog(Inventory inventory, ArrayList<HardwareComponent> hardwareComponents, ArrayList<Clothing> clothes) {
         this.inventory = inventory;
+        this.hardwareComponents = hardwareComponents;
+        this.clothes = clothes;
     }
 
     public void displayProducts() {
-        ArrayList<HardwareComponent> hardwareComponents = inventory.getHardwareComponents();
-        ArrayList<Clothing> clothes = inventory.getClothes();
 
         System.out.println("\nComponentes de Hardware: ");
         for (HardwareComponent hardwareComponent : hardwareComponents) {

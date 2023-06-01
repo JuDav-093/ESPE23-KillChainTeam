@@ -3,7 +3,10 @@ package ec.edu.espe.evsustore.view;
 
 import ec.edu.espe.evsustore.model.Clothing;
 import ec.edu.espe.evsustore.model.HardwareComponent;
+import ec.edu.espe.evsustore.model.Inventory;
+import ec.edu.espe.evsustore.model.JsonFileManager;
 import ec.edu.espe.evsustore.model.Purchase;
+import ec.edu.espe.evsustore.model.PurchaseRegister;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,9 +17,15 @@ import java.util.Scanner;
 public class PurchaseInterface {
     ArrayList<HardwareComponent> hardwareComponents = new ArrayList<>();
     ArrayList<Clothing> clothings = new ArrayList<>();
+    ArrayList<Purchase> purchases = new ArrayList<>();
+    PurchaseRegister purchaseRegister = new PurchaseRegister(purchases);
+    Inventory inventory = new Inventory(hardwareComponents, clothings);
+    JsonFileManager purchaseRegisterFile = new JsonFileManager("SalesRegister");
+    JsonFileManager inventoryFile = new JsonFileManager("Inventory");
     InputHandler keyboardInput = new InputHandler();
     Scanner scanner = new Scanner(System.in);
     UserInterface ui=new UserInterface();
+    
     
     public HardwareComponent createPurchase(){
         HardwareComponent purchasedHardwareComponents = new HardwareComponent();
@@ -63,6 +72,7 @@ public class PurchaseInterface {
     }
     
     public void menuPurchase(){
+        inventoryFile.updateInventory(inventory);
         System.out.println("*********************************************************");
         System.out.println("                    EVSU STORE-COMPRAS                         ");
         System.out.println("*********************************************************");
@@ -85,11 +95,18 @@ public class PurchaseInterface {
                 case 1 -> {
                     Purchase purchase = new Purchase(hardwareComponents,clothings);   
                     purchase.toPurchaseHardwareComponents(hardwareComponents,createPurchase());
+                    purchases.add(purchase);
+                    purchaseRegisterFile.writePurchaseRegisterFile(purchaseRegister);
+                    inventoryFile.writeInventoryFile(inventory);
                     
                 }
                 case 2 -> {
                     Purchase purchase = new Purchase(hardwareComponents,clothings);
                     purchase.toPurchaseClothing(clothings,createPurchaseClothing());
+                    purchases.add(purchase);
+                    purchaseRegisterFile.writePurchaseRegisterFile(purchaseRegister);
+                    
+                    inventoryFile.writeInventoryFile(inventory);
                 
                 }
                 case 3 -> {
@@ -116,4 +133,19 @@ public class PurchaseInterface {
             }
         }
     }
+    
+    public void showInventoryUpdated(){
+        purchaseRegisterFile.viewPurchaseRegister(purchaseRegister);
+    }
+    
+    public void showRegisterOfSales(){
+        purchaseRegisterFile.viewPurchaseRegister(purchaseRegister);
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    
+    
 }
