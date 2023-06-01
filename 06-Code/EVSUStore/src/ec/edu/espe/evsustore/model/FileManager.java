@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class FileManager {
     private String fileName;
     
-    public void create(){
+    public void createInventoryFile(){
         try {
             File file = new File(fileName + ".json");
             
@@ -34,20 +34,20 @@ public class FileManager {
         }
     }
     
-    public void write(Inventory inventory){
+    public void writeInventoryFile(Inventory inventory){
         File file = new File(fileName + ".json");
         String dataReaded;
         if (file.exists()){
             dataReaded = readData();
-            writeIfFileExists(inventory, dataReaded);
+            writeIfInventoryFileExists(inventory, dataReaded);
         }
         else{
-            create();
-            writeIfFileDoesntExists(inventory);
+            createInventoryFile();
+            writeIfInventoryFileDoesntExists(inventory);
         }
         
     }
-    public void writeIfFileDoesntExists(Inventory inventory){
+    public void writeIfInventoryFileDoesntExists(Inventory inventory){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
             Gson gson = new Gson();
@@ -58,42 +58,81 @@ public class FileManager {
         catch (IOException ex) {
             System.out.println("Hubo un error al escribir el archivo");
         }
-        
     }
-    public void writeIfFileExists(Inventory currentInventory, String dataReaded){
+    
+    public void writeIfInventoryFileExists(Inventory currentInventory, String dataReaded){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
             Gson gson = new Gson();
             Type Inventory = new TypeToken<Inventory>(){}.getType();
             Inventory savedInventory = gson.fromJson(dataReaded, Inventory);
-            HardwareComponent lastComponent = new HardwareComponent();
-            Clothing lastClothing = new Clothing();
-            int maxSavedIndex;
-            int maxCurrentIndex;
+            HardwareComponent hardwareComp = new HardwareComponent();
             
-            maxSavedIndex = savedInventory.getHardwareComponents().lastIndexOf(lastComponent);
-            maxCurrentIndex = currentInventory.getHardwareComponents().size()-1;
-                    
-            for(HardwareComponent component: currentInventory.getHardwareComponents().subList(maxSavedIndex, maxCurrentIndex)){
-                savedInventory.getHardwareComponents().add(component);
-            }
-            
-            maxSavedIndex = savedInventory.getClothes().lastIndexOf(lastComponent);
-            maxCurrentIndex = currentInventory.getClothes().size()-1;
-            
-            for(Clothing cloth: currentInventory.getClothes().subList(maxSavedIndex, maxCurrentIndex)){
-                savedInventory.getClothes().add(cloth);
+            for(int i=currentInventory.getHardwareComponents().size()-1; i<currentInventory.getHardwareComponents().size();i++){
+                HardwareComponent component = currentInventory.getHardwareComponents().get(i);
+                int j = savedInventory.getHardwareComponents().size();
+                savedInventory.getHardwareComponents().add(j, component);
             }
 
             writer.write(gson.toJson(savedInventory));
             writer.flush();
-            
         } 
         catch (IOException ex) {
             System.out.println("Hubo un error al escribir el archivo");
         }
         
     }
+    /*
+    public void writeSalesRegisterFile(SalesRegister salesRegister){
+        File file = new File(fileName + ".json");
+        String dataReaded;
+        if (file.exists()){
+            dataReaded = readData();
+            writeIfSalesRegisterFileExists(salesRegister, dataReaded);
+        }
+        else{
+            createInventoryFile();
+            writeIfSalesRegisterFileDoesntExists(salesRegister);
+        }
+        
+    }
+    public void writeIfSalesRegisterDoesntExists(SalesRegister salesRegister){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
+            Gson gson = new Gson();
+            
+            writer.write(gson.toJson(inventory));
+            writer.flush();
+        } 
+        catch (IOException ex) {
+            System.out.println("Hubo un error al escribir el archivo");
+        }
+    }
+    
+    public void writeIfSalesRegisterExists(SalesRegister salesRegister, String dataReaded){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
+            Gson gson = new Gson();
+            Type Inventory = new TypeToken<Inventory>(){}.getType();
+            Inventory savedInventory = gson.fromJson(dataReaded, Inventory);
+            HardwareComponent hardwareComp = new HardwareComponent();
+            
+            for(int i=currentInventory.getHardwareComponents().size()-1; i<currentInventory.getHardwareComponents().size();i++){
+                HardwareComponent component = currentInventory.getHardwareComponents().get(i);
+                int j = savedInventory.getHardwareComponents().size();
+                savedInventory.getHardwareComponents().add(j, component);
+            }
+
+            writer.write(gson.toJson(savedInventory));
+            writer.flush();
+        } 
+        catch (IOException ex) {
+            System.out.println("Hubo un error al escribir el archivo");
+        }
+        
+    }
+    */
+    
     
     public String readData() {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName + ".json"))) {

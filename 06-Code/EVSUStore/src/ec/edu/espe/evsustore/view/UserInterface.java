@@ -48,7 +48,7 @@ public class UserInterface {
         System.out.println("Ingrese el precio de venta del componte: ");
         purchasedHardwareComponents.setIndividualPrice(keyboardInput.nextDouble());
         
-        System.out.println(purchasedHardwareComponents);
+        System.out.println("Se ha añadido al inventario: \n"+purchasedHardwareComponents);
         
         
         return purchasedHardwareComponents; 
@@ -87,9 +87,8 @@ public class UserInterface {
             int option = scanner.nextInt();
             switch (option) {
                 case 1 -> {
-                    purchase.toPurchaseHardwareComponents(hardwareComponents,createPurchase());
                     
-                    jsonFile.write(inventory);
+                    
                     
                 }
                 case 2 -> {
