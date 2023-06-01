@@ -13,9 +13,10 @@ import java.util.Scanner;
  * @author Andres Espin, KillChain, DCOO-ESPE
  */
 public class UserInterface {
-    Scanner keyboardInput = new Scanner(System.in);
     ArrayList <HardwareComponent> hardwareComponents=new ArrayList();
+    InputHandler keyboardInput = new InputHandler();
     ArrayList <Clothing> clothings=new ArrayList();
+    Scanner scanner = new Scanner(System.in);
     Inventory inventory = new Inventory(hardwareComponents,clothings);
     public void showMenu() {
         
@@ -27,6 +28,7 @@ public class UserInterface {
         System.out.println("2.Ver productos ");
         System.out.println("3.Realizar venta");
         System.out.println("4.Ver registors de compras");
+        System.out.println("5.Salir");
         System.out.println("");
         System.out.println("Escoja una opcion");
         System.out.println("");
@@ -55,27 +57,71 @@ public class UserInterface {
           
     }
     
-    /*public HardwareComponent createPurchaseClothing(){
-        Clothing purchaseClothing = new Clothing();
-        purchasedHardwareComponents.setId();
+    public Clothing createPurchaseClothing(){
+        Clothing purchaseClothings = new Clothing();
+        purchaseClothings.setId();
         System.out.println("Ingrese el nombre del componente: ");
-        purchasedHardwareComponents.setName(keyboardInput.nextLine());
+        purchaseClothings.setName(keyboardInput.nextLine());
         System.out.println("Ingrese el modelo del componente: ");
-        purchasedHardwareComponents.setModel(keyboardInput.nextLine());
+        purchaseClothings.setModel(keyboardInput.nextLine());
         System.out.println("Ingrese el cantidad del componente: ");
-        purchasedHardwareComponents.setQuantity(keyboardInput.nextInt());
+        purchaseClothings.setQuantity(keyboardInput.nextInt());
         System.out.println("Ingrese el costo del componente: ");
-        purchasedHardwareComponents.setIndividualCost(keyboardInput.nextDouble());
+        purchaseClothings.setIndividualCost(keyboardInput.nextDouble());
         System.out.println("Ingrese el precio de venta del componte: ");
-        purchasedHardwareComponents.setIndividualPrice(keyboardInput.nextDouble());
+        purchaseClothings.setIndividualPrice(keyboardInput.nextDouble());
         
-        System.out.println(purchased);
+        System.out.println(purchaseClothings);
         
         
-        return purchasedHardwareComponents; 
+        return purchaseClothings; 
           
-    }*/
+    }
     
+    public void menuPurchase(){
+        System.out.println("*********************************************************");
+        System.out.println("                    EVSU STORE-COMPRAS                         ");
+        System.out.println("*********************************************************");
+        System.out.println("");
+        System.out.println("1.Componentes de Hardware ");
+        System.out.println("2.Ropa ");
+        System.out.println("3.Menu Principal");
+        System.out.println("");
+        System.out.println("Escoja una opcion");
+        System.out.println("");
+        System.out.println("*********************************************************");
+    }
+    
+    public void handlePurchase() {
+        while (true) {
+            menuPurchase();
+            int purchaseOption = keyboardInput.nextInt();
+            switch (purchaseOption) {
+                case 1 -> {
+                    Purchase purchase = new Purchase(hardwareComponents,clothings);
+                    purchase.toPurchaseHardwareComponents(hardwareComponents,createPurchase());
+                    System.out.println(purchase);
+                }
+                case 2 -> {
+                    Purchase purchase = new Purchase(hardwareComponents,clothings);
+                    purchase.toPurchaseClothing(clothings,createPurchaseClothing());
+                    System.out.println(purchase);
+                }
+                case 3 -> {
+                    selecOption();
+                }
+                default -> {
+                    System.out.println("Opción invalida");
+                }
+            }
+            System.out.println("¿Deseas hacer otra compra? (S/N)");
+            String continueShopping = keyboardInput.next().toLowerCase();
+
+            if (!continueShopping.equals("s")) {
+                break;
+            }
+        }
+    }
     
     public void selecOption(){
         while (true) {
@@ -83,12 +129,19 @@ public class UserInterface {
             FileManager jsonFile = new FileManager();
             jsonFile.setFileName("TEST1JSON");
             showMenu();
-            Scanner scanner = new Scanner(System.in);
+            
             int option = scanner.nextInt();
             switch (option) {
                 case 1 -> {
+<<<<<<< HEAD
                     
                     
+=======
+                    handlePurchase();
+                    jsonFile.write(inventory);             
+                    
+
+>>>>>>> ffb17918babd33cff19c11db7e8eede8e5066702
                     
                 }
                 case 2 -> {
