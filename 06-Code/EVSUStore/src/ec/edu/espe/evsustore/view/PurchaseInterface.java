@@ -135,6 +135,7 @@ public class PurchaseInterface {
     }
     
     public void showInventoryUpdated(){
+        inventoryFile.updateInventory(inventory);
         purchaseRegisterFile.viewPurchaseRegister(purchaseRegister);
     }
     

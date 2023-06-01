@@ -24,9 +24,4 @@ public class SalesRegister {
     public void setSales(ArrayList<Sale> sales) {
         this.sales = sales;
     }
-<<<<<<< HEAD
-    
-    
-=======
->>>>>>> c87100ccf41e5d5a3a9d5ecb452df5d2f9b1d337
 }
