@@ -2,7 +2,6 @@ package ec.edu.espe.evsustore.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
@@ -24,20 +23,13 @@ public class Purchase {
     }
     
     public void toPurchaseHardwareComponents(ArrayList <HardwareComponent> hardwareComponents, HardwareComponent purchasedHardwareComponent){
-        setCost(purchasedHardwareComponent.getTotalPrice());
+        setCost(purchasedHardwareComponent.getTotalCost());
         hardwareComponents.add(purchasedHardwareComponent);
     }
     
-    public void toPurchaseClothing(ArrayList <Clothing> clothes){
-        Scanner keyboardInput = new Scanner(System.in);
-        Clothing purchasedClothes = new Clothing();
-        purchasedClothes.setId();
-        purchasedClothes.setName(keyboardInput.nextLine());
-        purchasedClothes.setModel(keyboardInput.nextLine());
-        purchasedClothes.setQuantity(keyboardInput.nextInt());
-        purchasedClothes.setIndividualCost(keyboardInput.nextDouble());
-        setCost(purchasedClothes.getTotalPrice());
-        clothes.add(purchasedClothes);
+    public void toPurchaseClothing(ArrayList <Clothing> clothes, Clothing purchasedClothing){
+        setCost(purchasedClothing.getTotalCost());
+        clothes.add(purchasedClothing);
     }
 
     public ArrayList <HardwareComponent> getHardwareComponents(){
