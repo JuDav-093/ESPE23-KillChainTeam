@@ -27,9 +27,17 @@ public class Purchase {
         hardwareComponents.add(purchasedHardwareComponent);
     }
     
+
     public void toPurchaseClothing(ArrayList <Clothing> clothes, Clothing purchasedClothing){
         setCost(purchasedClothing.getTotalCost());
         clothes.add(purchasedClothing);
+        
+    }
+
+    public void toPurchaseClothing(ArrayList <Clothing> clothes){
+        Clothing purchasedClothes = new Clothing();
+        clothes.add(purchasedClothes);
+
     }
 
     public ArrayList <HardwareComponent> getHardwareComponents(){
