@@ -8,24 +8,87 @@ import ec.edu.espe.evsustore.model.JsonFileManager;
 import ec.edu.espe.evsustore.model.Purchase;
 import ec.edu.espe.evsustore.model.PurchaseRegister;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
  * @author Andres Espin, KillChain, DCOO-ESPE
  */
 public class PurchaseInterface {
+    InputHandler keyboardInput = new InputHandler();
+    UserInterface ui = new UserInterface();
+    
     ArrayList<HardwareComponent> hardwareComponents = new ArrayList<>();
     ArrayList<Clothing> clothings = new ArrayList<>();
     ArrayList<Purchase> purchases = new ArrayList<>();
-    PurchaseRegister purchaseRegister = new PurchaseRegister(purchases);
-    Inventory inventory = new Inventory(hardwareComponents, clothings);
-    JsonFileManager purchaseRegisterFile = new JsonFileManager("SalesRegister");
-    JsonFileManager inventoryFile = new JsonFileManager("Inventory");
-    InputHandler keyboardInput = new InputHandler();
-    Scanner scanner = new Scanner(System.in);
-    UserInterface ui=new UserInterface();
     
+    PurchaseRegister purchaseRegister = new PurchaseRegister(purchases);
+    JsonFileManager purchaseRegisterFile = new JsonFileManager("PurchaseRegister");
+    
+    public void handlePurchase() {
+    ui.getInventory().setHardwareComponents(hardwareComponents);
+    ui.getInventory().setClothes(clothings);
+        while (true) {
+            menuPurchase();
+            int purchaseOption = keyboardInput.nextInt();
+            keyboardInput.nextLine();
+            switch (purchaseOption) {
+                case 1 -> {
+                    Purchase purchase = new Purchase(hardwareComponents,clothings);   
+                    purchase.toPurchaseHardwareComponents(hardwareComponents,createPurchase());
+                    purchases.add(purchase);
+                    purchaseRegisterFile.writePurchaseRegisterFile(purchaseRegister);
+                    ui.getInventoryFile().writeInventoryFile(ui.getInventory());
+                    
+                }
+                case 2 -> {
+                    Purchase purchase = new Purchase(hardwareComponents,clothings);
+                    purchase.toPurchaseClothing(clothings,createPurchaseClothing());
+                    purchases.add(purchase);
+                    purchaseRegisterFile.writePurchaseRegisterFile(purchaseRegister);
+                    
+                    ui.getInventoryFile().writeInventoryFile(ui.getInventory());
+                
+                }
+                case 3 -> {
+                    ui.selecOption();
+                }
+                default -> {
+                    System.out.println("Opción invalida");
+                }
+            }
+            System.out.println("¿Deseas hacer otra compra? (S/N)");
+            String continueShopping;
+            while (true) {
+                continueShopping = keyboardInput.next().toLowerCase();
+                if (continueShopping.equals("s") || continueShopping.equals("n")) {
+                    break;
+                } else {
+                    System.out.println("Entrada no válida. Por favor, ingrese S o N.");
+                }
+            }
+
+            if (continueShopping.equals("n")) {
+                ui.selecOption();
+                break;
+            }
+        }
+    }
+    
+    public void menuPurchase(){
+        ui.getInventoryFile().updateInventory(ui.getInventory());
+        
+        System.out.println("*********************************************************");
+        System.out.println("                    EVSU STORE-COMPRAS                         ");
+        System.out.println("*********************************************************");
+        System.out.println("");
+        System.out.println("1.Componentes de Hardware ");
+        System.out.println("2.Ropa ");
+        System.out.println("3.Menu Principal");
+        System.out.println("");
+        System.out.println("Escoja una opcion");
+        System.out.println("");
+        System.out.println("*********************************************************");
+    }
     
     public HardwareComponent createPurchase(){
         HardwareComponent purchasedHardwareComponents = new HardwareComponent();
@@ -71,82 +134,7 @@ public class PurchaseInterface {
         return purchaseClothings;   
     }
     
-    public void menuPurchase(){
-        inventoryFile.updateInventory(inventory);
-        System.out.println("*********************************************************");
-        System.out.println("                    EVSU STORE-COMPRAS                         ");
-        System.out.println("*********************************************************");
-        System.out.println("");
-        System.out.println("1.Componentes de Hardware ");
-        System.out.println("2.Ropa ");
-        System.out.println("3.Menu Principal");
-        System.out.println("");
-        System.out.println("Escoja una opcion");
-        System.out.println("");
-        System.out.println("*********************************************************");
-    }
-    
-    public void handlePurchase() {
-        while (true) {
-            menuPurchase();
-            int purchaseOption = keyboardInput.nextInt();
-            keyboardInput.nextLine();
-            switch (purchaseOption) {
-                case 1 -> {
-                    Purchase purchase = new Purchase(hardwareComponents,clothings);   
-                    purchase.toPurchaseHardwareComponents(hardwareComponents,createPurchase());
-                    purchases.add(purchase);
-                    purchaseRegisterFile.writePurchaseRegisterFile(purchaseRegister);
-                    inventoryFile.writeInventoryFile(inventory);
-                    
-                }
-                case 2 -> {
-                    Purchase purchase = new Purchase(hardwareComponents,clothings);
-                    purchase.toPurchaseClothing(clothings,createPurchaseClothing());
-                    purchases.add(purchase);
-                    purchaseRegisterFile.writePurchaseRegisterFile(purchaseRegister);
-                    
-                    inventoryFile.writeInventoryFile(inventory);
-                
-                }
-                case 3 -> {
-                    ui.selecOption();
-                }
-                default -> {
-                    System.out.println("Opción invalida");
-                }
-            }
-            System.out.println("¿Deseas hacer otra compra? (S/N)");
-            String continueShopping;
-            while (true) {
-                continueShopping = keyboardInput.next().toLowerCase();
-                if (continueShopping.equals("s") || continueShopping.equals("n")) {
-                    break;
-                } else {
-                    System.out.println("Entrada no válida. Por favor, ingrese S o N.");
-                }
-            }
-
-            if (continueShopping.equals("n")) {
-                ui.selecOption();
-                break;
-            }
-        }
-    }
-    
-    public void showInventoryUpdated(){
-        inventoryFile.updateInventory(inventory);
+    public void showRegisterOfPurchases(){
         purchaseRegisterFile.viewPurchaseRegister(purchaseRegister);
     }
-    
-    public void showRegisterOfSales(){
-        purchaseRegisterFile.viewPurchaseRegister(purchaseRegister);
-    }
-
-    public Inventory getInventory() {
-        return inventory;
-    }
-
-    
-    
 }

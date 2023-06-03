@@ -9,16 +9,10 @@ package ec.edu.espe.evsustore.view;
 import ec.edu.espe.evsustore.model.HardwareComponent;
 import ec.edu.espe.evsustore.model.Clothing;
 
-import java.util.ArrayList;
-
 import ec.edu.espe.evsustore.model.Inventory;
 
 public class Catalog {
     private Inventory inventory;
-    private ArrayList<HardwareComponent> hardwareComponents;
-    private ArrayList<Clothing>  clothes;
-
-    
     
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
@@ -28,23 +22,38 @@ public class Catalog {
         return inventory;
     }
 
-    public Catalog(Inventory inventory, ArrayList<HardwareComponent> hardwareComponents, ArrayList<Clothing> clothes) {
+    public Catalog(Inventory inventory) {
         this.inventory = inventory;
-        this.hardwareComponents = hardwareComponents;
-        this.clothes = clothes;
     }
 
     public void displayProducts() {
-
+        
         System.out.println("\nComponentes de Hardware: ");
-        for (HardwareComponent hardwareComponent : hardwareComponents) {
-            System.out.println(hardwareComponent);
+        for (HardwareComponent hardwareComponent : inventory.getHardwareComponents()) {
+            System.out.println(infoForClient(hardwareComponent));
         }
 
         System.out.println("\nRopa: ");
-        for (Clothing clothing : clothes) {
-            System.out.println(clothing);
+        for (Clothing clothing : inventory.getClothes()) {
+            System.out.println(infoForClient(clothing));
         }
+    }
+    
+    public String infoForClient(HardwareComponent hardwareComponent){
+        String catalogInfo = (hardwareComponent.getName() + " " + 
+                hardwareComponent.getModel() + 
+                " || PVP: " + hardwareComponent.getIndividualPrice() +
+                " || Unidades disponibles: " + hardwareComponent.getQuantity());
+        
+        return catalogInfo;    
+    }
+    public String infoForClient(Clothing clothing){
+        String catalogInfo = (clothing.getName() + " " + 
+                clothing.getModel() + 
+                " PVP: " + clothing.getIndividualPrice() +
+                " Unidades disponibles: " + clothing.getQuantity());
+        
+        return catalogInfo;
     }
 }
 

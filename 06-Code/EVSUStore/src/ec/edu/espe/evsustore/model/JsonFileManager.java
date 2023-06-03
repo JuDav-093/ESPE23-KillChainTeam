@@ -221,18 +221,22 @@ public class JsonFileManager {
         String dataReaded;
         if (file.exists()){
             dataReaded = readData();
-            inventory = uptadteInventory(dataReaded);
+            uptdateInventoryWithFile(inventory, dataReaded);
+           
         }
         else{
             
         }
         
     }
-    public Inventory uptadteInventory(String dataReaded){
+    public void uptdateInventoryWithFile(Inventory inventory, String dataReaded){
         Gson gson = new Gson();
         Type Inventory = new TypeToken<Inventory>(){}.getType();
         Inventory savedInventory = gson.fromJson(dataReaded, Inventory);
-        return savedInventory;
+        if(savedInventory!=null){
+            inventory.setClothes(savedInventory.getClothes());
+            inventory.setHardwareComponents(savedInventory.getHardwareComponents());
+        }
     }
     
     
@@ -241,7 +245,7 @@ public class JsonFileManager {
         String dataReaded;
         if (file.exists()){
             dataReaded = readData();
-            showPurchaseRegister(dataReaded);
+            showInventory(dataReaded);
         }
         else{
             
