@@ -20,22 +20,14 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/view/Catalog.java</file>
-            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/HardwareComponent.java</file>
-            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/Sale.java</file>
             <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/view/UserInterface.java</file>
-            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/Customer.java</file>
-            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/Inventory.java</file>
-            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/view/EVSUStore.java</file>
-            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/SalesRegister.java</file>
-            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/view/InputHandler.java</file>
+            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/HardwareComponent.java</file>
             <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/Purchase.java</file>
+            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/Customer.java</file>
+            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/view/InputHandler.java</file>
+            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/Inventory.java</file>
             <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/JsonFileManager.java</file>
-            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/Salesman.java</file>
             <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/PurchaseRegister.java</file>
-            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/FileManager.java</file>
-            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/Manager.java</file>
-            <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/model/Clothing.java</file>
             <file>file:/D:/Universidad/SegundoSemestre/OOP/ESPE23-KillChainTeam/06-Code/EVSUStore/src/ec/edu/espe/evsustore/view/PurchaseInterface.java</file>
         </group>
     </open-files>

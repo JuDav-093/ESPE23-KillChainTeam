@@ -3,7 +3,6 @@ package ec.edu.espe.evsustore.view;
 
 import ec.edu.espe.evsustore.model.Clothing;
 import ec.edu.espe.evsustore.model.HardwareComponent;
-import ec.edu.espe.evsustore.model.Inventory;
 import ec.edu.espe.evsustore.model.JsonFileManager;
 import ec.edu.espe.evsustore.model.Purchase;
 import ec.edu.espe.evsustore.model.PurchaseRegister;
@@ -17,7 +16,7 @@ public class PurchaseInterface {
     InputHandler keyboardInput = new InputHandler();
     UserInterface ui = new UserInterface();
     
-    ArrayList<HardwareComponent> hardwareComponents = new ArrayList<>();
+    ArrayList<HardwareComponent> hardwareComponents = ui.getInventory().getHardwareComponents();;
     ArrayList<Clothing> clothings = new ArrayList<>();
     ArrayList<Purchase> purchases = new ArrayList<>();
     
@@ -25,8 +24,6 @@ public class PurchaseInterface {
     JsonFileManager purchaseRegisterFile = new JsonFileManager("PurchaseRegister");
     
     public void handlePurchase() {
-    ui.getInventory().setHardwareComponents(hardwareComponents);
-    ui.getInventory().setClothes(clothings);
         while (true) {
             menuPurchase();
             int purchaseOption = keyboardInput.nextInt();
@@ -34,11 +31,13 @@ public class PurchaseInterface {
             switch (purchaseOption) {
                 case 1 -> {
                     Purchase purchase = new Purchase(hardwareComponents,clothings);   
-                    purchase.toPurchaseHardwareComponents(hardwareComponents,createPurchase());
+                    HardwareComponent purchasedComp = createPurchase();
+                    ui.getInventoryFile().updateInventory(ui.getInventory());
+                    purchase.toPurchaseHardwareComponents(hardwareComponents,purchasedComp);
                     purchases.add(purchase);
                     purchaseRegisterFile.writePurchaseRegisterFile(purchaseRegister);
+                    ui.getInventory().getHardwareComponents().add(purchasedComp);
                     ui.getInventoryFile().writeInventoryFile(ui.getInventory());
-                    
                 }
                 case 2 -> {
                     Purchase purchase = new Purchase(hardwareComponents,clothings);
