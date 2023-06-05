@@ -71,8 +71,9 @@ public class HardwareComponent {
     }
     
     public int generateId() {
-        int i = 0;
-        i++;
+        JsonFileManager jsonFile = new JsonFileManager("Inventory");
+        int i = jsonFile.searchComponentId() + 1;
+        
         return i;
     }
 

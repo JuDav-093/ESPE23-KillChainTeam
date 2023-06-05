@@ -14,11 +14,10 @@ import java.util.Scanner;
  * @author Andres Espin, KillChain, DCOO-ESPE
  */
 public class UserInterface {
-    PurchaseInterface purchaseInterface;
     ArrayList<HardwareComponent> hardwareComponents = new ArrayList<>();
     ArrayList<Clothing> clothings = new ArrayList<>();
-
     Inventory inventory = new Inventory(hardwareComponents, clothings);
+    
     JsonFileManager inventoryFile = new JsonFileManager("Inventory");
     Catalog catalog = new Catalog(inventory);
     SaleInterface saleInterface = new SaleInterface(catalog);
@@ -27,16 +26,9 @@ public class UserInterface {
     Scanner scanner = new Scanner(System.in);
     InputHandler keyboardInput = new InputHandler();
     SalesRegister salesRegister = new SalesRegister();
-
-    public UserInterface(PurchaseInterface purchaseInterface) {
-        this.purchaseInterface = purchaseInterface;
-    }
-    public void setPurchaseInterface(PurchaseInterface purchaseInterface) {
-        this.purchaseInterface = purchaseInterface;
-    }
     
     public void selecOption(){
-        
+        PurchaseInterface purchaseInterface = new PurchaseInterface(); 
         while (true) {
 
             showMenu();
@@ -54,13 +46,11 @@ public class UserInterface {
 
             switch (option) {
                 case 1 -> {
-                    
                     purchaseInterface.handlePurchase();
                    
                 }
                 case 2 -> {
                     inventoryFile.updateInventory(inventory);
-                    saleInterface.displayProducts();
                     catalog.displayProducts();
 
                 }
@@ -69,7 +59,7 @@ public class UserInterface {
                     System.out.print("Ingrese el índice del producto que desea comprar: ");
                     int productIndex = keyboardInput.nextInt();
                     saleInterface.purchaseProduct(productIndex);
-                    System.out.println("Hacer compra");
+                    inventoryFile.writeInventoryFile(inventory);
                 }
                 case 4 -> {
                     purchaseInterface.showRegisterOfPurchases();

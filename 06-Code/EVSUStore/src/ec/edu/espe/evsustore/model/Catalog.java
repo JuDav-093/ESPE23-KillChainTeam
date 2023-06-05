@@ -36,18 +36,20 @@ public class Catalog {
     }
     
     public String infoForClient(HardwareComponent hardwareComponent){
-        String catalogInfo = (hardwareComponent.getName() + " " + 
+        String catalogInfo = ("ID:" + hardwareComponent.getId() + " \t|| " +
+                hardwareComponent.getName() + " " + 
                 hardwareComponent.getModel() + 
-                " || PVP: " + hardwareComponent.getIndividualPrice() +
-                " || Unidades disponibles: " + hardwareComponent.getQuantity());
+                " \t|| PVP: " + hardwareComponent.getIndividualPrice() +
+                " \t|| Unidades disponibles: " + hardwareComponent.getQuantity());
         
         return catalogInfo;    
     }
     public String infoForClient(Clothing clothing){
-        String catalogInfo = (clothing.getName() + " " + 
+        String catalogInfo = ("ID:" + clothing.getId() + " \t|| " +
+                clothing.getName() + " " + 
                 clothing.getModel() + 
-                " PVP: " + clothing.getIndividualPrice() +
-                " Unidades disponibles: " + clothing.getQuantity());
+                " \t|| PVP: " + clothing.getIndividualPrice() +
+                " \t|| Unidades disponibles: " + clothing.getQuantity());
         
         return catalogInfo;
     }

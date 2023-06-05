@@ -4,7 +4,6 @@ package ec.edu.espe.evsustore.view;
 import ec.edu.espe.evsustore.model.Catalog;
 import ec.edu.espe.evsustore.model.Clothing;
 import ec.edu.espe.evsustore.model.HardwareComponent;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -15,17 +14,11 @@ import java.util.Scanner;
 public class SaleInterface {
     private Catalog catalog;
     private int currentIndex;
-
-    public SaleInterface(Catalog catalog) {
-        this.catalog = catalog;
-        this.currentIndex = 0;
-    }
-
+    
+    
     public void displayProducts() {
-        ArrayList<HardwareComponent> hardwareComponents = catalog.getInventory().getHardwareComponents();
-        ArrayList<Clothing> clothes = catalog.getInventory().getClothes();
-
-        int numProducts = hardwareComponents.size() + clothes.size();
+        
+        int numProducts = catalog.getInventory().getHardwareComponents().size() + catalog.getInventory().getClothes().size();
         if (numProducts == 0) {
             System.out.println("No hay productos disponibles en el inventario.");
             return;
@@ -39,11 +32,11 @@ public class SaleInterface {
             System.out.println("\n--- Productos disponibles ---");
 
             for (int i = currentIndex; i < currentIndex + 5; i++) {
-                if (i < hardwareComponents.size()) {
-                    HardwareComponent hardwareComponent = hardwareComponents.get(i);
+                if (i < catalog.getInventory().getHardwareComponents().size()) {
+                    HardwareComponent hardwareComponent = catalog.getInventory().getHardwareComponents().get(i);
                     System.out.println(catalog.infoForClient(hardwareComponent));
-                } else if (i - hardwareComponents.size() < clothes.size()) {
-                    Clothing clothing = clothes.get(i - hardwareComponents.size());
+                } else if (i - catalog.getInventory().getHardwareComponents().size() < catalog.getInventory().getClothes().size()) {
+                    Clothing clothing = catalog.getInventory().getClothes().get(i - catalog.getInventory().getHardwareComponents().size());
                     System.out.println(catalog.infoForClient(clothing));
                 } else {
                     break;
@@ -70,10 +63,8 @@ public class SaleInterface {
     }
 
     public void purchaseProduct(int productIndex) {
-        ArrayList<HardwareComponent> hardwareComponents = catalog.getInventory().getHardwareComponents();
-        ArrayList<Clothing> clothes = catalog.getInventory().getClothes();
 
-        int numProducts = hardwareComponents.size() + clothes.size();
+        int numProducts = catalog.getInventory().getHardwareComponents().size() + catalog.getInventory().getClothes().size();
         if (productIndex < 0 || productIndex >= numProducts) {
             System.out.println("Índice de producto inválido.");
             return;
@@ -81,8 +72,8 @@ public class SaleInterface {
 
         Scanner scanner = new Scanner(System.in);
 
-        if (productIndex < hardwareComponents.size()) {
-            HardwareComponent hardwareComponent = hardwareComponents.get(productIndex);
+        if (productIndex < catalog.getInventory().getHardwareComponents().size()) {
+            HardwareComponent hardwareComponent = catalog.getInventory().getHardwareComponents().get(productIndex);
             System.out.println("Ha seleccionado el siguiente componente de hardware:");
             System.out.println(catalog.infoForClient(hardwareComponent));
             System.out.print("Ingrese la cantidad a comprar: ");
@@ -94,9 +85,11 @@ public class SaleInterface {
             }
 
             hardwareComponent.setQuantity(hardwareComponent.getQuantity() - quantity);
+            catalog.getInventory().getHardwareComponents().get(productIndex).setQuantity(hardwareComponent.getQuantity());
             System.out.println("Compra realizada exitosamente.");
+            
         } else {
-            Clothing clothing = clothes.get(productIndex - hardwareComponents.size());
+            Clothing clothing = catalog.getInventory().getClothes().get(productIndex - catalog.getInventory().getHardwareComponents().size());
             System.out.println("Ha seleccionado la siguiente prenda de ropa:");
             System.out.println(catalog.infoForClient(clothing));
             System.out.print("Ingrese la cantidad a comprar: ");
@@ -109,6 +102,13 @@ public class SaleInterface {
 
             clothing.setQuantity(clothing.getQuantity() - quantity);
             System.out.println("Compra realizada exitosamente.");
+            
         }
     }
+    
+    public SaleInterface(Catalog catalog) {
+        this.catalog = catalog;
+        this.currentIndex = 0;
+    }
+    
 }

@@ -3,7 +3,6 @@ package ec.edu.espe.evsustore.view;
 
 import ec.edu.espe.evsustore.model.Clothing;
 import ec.edu.espe.evsustore.model.HardwareComponent;
-import ec.edu.espe.evsustore.model.Inventory;
 import ec.edu.espe.evsustore.model.JsonFileManager;
 import ec.edu.espe.evsustore.model.Purchase;
 import ec.edu.espe.evsustore.model.PurchaseRegister;
@@ -15,19 +14,7 @@ import java.util.ArrayList;
  */
 public class PurchaseInterface {
     InputHandler keyboardInput = new InputHandler();
-    private UserInterface ui;
-    
-    public PurchaseInterface(UserInterface ui) {
-        this.ui = ui;
-    }
-    
-    public void setUI(UserInterface ui) {
-        this.ui = ui;
-    }
-
-    public UserInterface getUI() {
-        return ui;
-    }
+    UserInterface ui = new UserInterface();
     
     ArrayList<HardwareComponent> hardwareComponents = new ArrayList<>();
     ArrayList<Clothing> clothings = new ArrayList<>();
@@ -38,8 +25,6 @@ public class PurchaseInterface {
     JsonFileManager purchaseRegisterFile = new JsonFileManager("PurchaseRegister");
     
     public void handlePurchase() {
-    ui.getInventory().setHardwareComponents(hardwareComponents);
-    ui.getInventory().setClothes(clothings);
         while (true) {
             menuPurchase();
             int purchaseOption = keyboardInput.nextInt();
@@ -47,18 +32,23 @@ public class PurchaseInterface {
             switch (purchaseOption) {
                 case 1 -> {
                     Purchase purchase = new Purchase(hardwareComponents,clothings);   
-                    purchase.toPurchaseHardwareComponents(hardwareComponents,createPurchase());
+                    HardwareComponent purchasedComponent = createPurchase();
+                    purchase.toPurchaseHardwareComponents(hardwareComponents,purchasedComponent);
                     purchases.add(purchase);
                     purchaseRegisterFile.writePurchaseRegisterFile(purchaseRegister);
+                    
+                    ui.getInventory().getHardwareComponents().add(purchasedComponent);
                     ui.getInventoryFile().writeInventoryFile(ui.getInventory());
                     
                 }
                 case 2 -> {
                     Purchase purchase = new Purchase(hardwareComponents,clothings);
-                    purchase.toPurchaseClothing(clothings,createPurchaseClothing());
+                    Clothing purchasedClothing = createPurchaseClothing();
+                    purchase.toPurchaseClothing(clothings, purchasedClothing);
                     purchases.add(purchase);
                     purchaseRegisterFile.writePurchaseRegisterFile(purchaseRegister);
                     
+                    ui.getInventory().getClothes().add(purchasedClothing);
                     ui.getInventoryFile().writeInventoryFile(ui.getInventory());
                 
                 }
@@ -128,17 +118,17 @@ public class PurchaseInterface {
     public Clothing createPurchaseClothing(){
         Clothing purchaseClothings = new Clothing();
         purchaseClothings.setId();
-        System.out.println("Ingrese el nombre del componente: ");
+        System.out.println("Ingrese el nombre de la prenda: ");
         purchaseClothings.setName(keyboardInput.nextLine());
-        System.out.println("Ingrese el modelo del componente: ");
+        System.out.println("Ingrese el modelo de la prenda: ");
         purchaseClothings.setModel(keyboardInput.nextLine());
-        System.out.println("Ingrese el cantidad del componente: ");
+        System.out.println("Ingrese el cantidad de la prenda: ");
         purchaseClothings.setQuantity(keyboardInput.nextInt());
         keyboardInput.nextLine(); 
-        System.out.println("Ingrese el costo del componente: ");
+        System.out.println("Ingrese el costo de la prenda: ");
         purchaseClothings.setIndividualCost(keyboardInput.nextDouble());
         keyboardInput.nextLine(); 
-        System.out.println("Ingrese el precio de venta del componte: ");
+        System.out.println("Ingrese el precio de venta de la prenda: ");
         purchaseClothings.setIndividualPrice(keyboardInput.nextDouble());
         keyboardInput.nextLine();
         System.out.println("");
@@ -149,5 +139,13 @@ public class PurchaseInterface {
     
     public void showRegisterOfPurchases(){
         purchaseRegisterFile.viewPurchaseRegister(purchaseRegister);
+    }
+    
+    public void setUI(UserInterface ui) {
+        this.ui = ui;
+    }
+
+    public UserInterface getUI() {
+        return ui;
     }
 }

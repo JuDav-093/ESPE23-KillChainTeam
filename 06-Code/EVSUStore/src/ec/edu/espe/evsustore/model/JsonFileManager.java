@@ -291,12 +291,11 @@ public class JsonFileManager {
             return readId(dataReaded);
         }
         else{
-            return 1;
+            return 0;
         }
     }
     
     public int readId(String dataReaded){
-        
         Gson gson = new Gson();
         Type Inventory = new TypeToken<Inventory>(){}.getType();
         Inventory savedInventory = gson.fromJson(dataReaded, Inventory);
