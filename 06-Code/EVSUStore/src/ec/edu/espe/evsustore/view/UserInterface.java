@@ -45,8 +45,15 @@ public class UserInterface {
             FileManager jsonFile = new FileManager();
             jsonFile.setFileName("TEST1JSON");
             showMenu();
-            
-            int option = scanner.nextInt();
+            String input = scanner.next();
+            int option; 
+            try{    
+                option= option = Integer.parseInt(input);
+            }catch(NumberFormatException e){
+                System.out.println("Error: entrada inválida");
+                scanner.nextLine();
+                continue;
+            }
             switch (option) {
                 case 1 -> {
                     purchaseInterface.handlePurchase();
@@ -65,8 +72,9 @@ public class UserInterface {
                     System.out.println("Ver registro");
                 }
                 case 5 -> {
+                    System.out.println("Gracias por usar EVSU STORE. ¡Hasta luego!");
                     scanner.close();
-                    return;
+                    System.exit(0);
                 }
                 default -> System.out.println("Opción inválida");
             }
