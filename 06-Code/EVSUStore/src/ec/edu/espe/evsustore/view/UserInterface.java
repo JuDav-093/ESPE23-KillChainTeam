@@ -1,5 +1,6 @@
 package ec.edu.espe.evsustore.view;
 
+import ec.edu.espe.evsustore.model.Catalog;
 import ec.edu.espe.evsustore.model.Clothing;
 import ec.edu.espe.evsustore.model.HardwareComponent;
 import ec.edu.espe.evsustore.model.Inventory;
@@ -13,25 +14,33 @@ import java.util.Scanner;
  * @author Andres Espin, KillChain, DCOO-ESPE
  */
 public class UserInterface {
-    Scanner scanner = new Scanner(System.in);   
-    InputHandler keyboardInput = new InputHandler();
-    
+    PurchaseInterface purchaseInterface;
     ArrayList<HardwareComponent> hardwareComponents = new ArrayList<>();
     ArrayList<Clothing> clothings = new ArrayList<>();
-    
+
     Inventory inventory = new Inventory(hardwareComponents, clothings);
     JsonFileManager inventoryFile = new JsonFileManager("Inventory");
     Catalog catalog = new Catalog(inventory);
+    SaleInterface saleInterface = new SaleInterface(catalog);
+
+    
+    Scanner scanner = new Scanner(System.in);
+    InputHandler keyboardInput = new InputHandler();
     SalesRegister salesRegister = new SalesRegister();
 
-    public UserInterface() {
+    public UserInterface(PurchaseInterface purchaseInterface) {
+        this.purchaseInterface = purchaseInterface;
+    }
+    public void setPurchaseInterface(PurchaseInterface purchaseInterface) {
+        this.purchaseInterface = purchaseInterface;
     }
     
     public void selecOption(){
-        PurchaseInterface purchaseInterface = new PurchaseInterface();
+        
         while (true) {
 
             showMenu();
+
             String input = scanner.next();
             int option; 
             try{    
@@ -42,8 +51,6 @@ public class UserInterface {
                 continue;
             }
 
-            
-            option = keyboardInput.nextInt();
 
             switch (option) {
                 case 1 -> {
@@ -52,13 +59,16 @@ public class UserInterface {
                    
                 }
                 case 2 -> {
-                    
                     inventoryFile.updateInventory(inventory);
+                    saleInterface.displayProducts();
                     catalog.displayProducts();
 
                 }
                 case 3 -> {
-                    
+                    saleInterface.displayProducts();
+                    System.out.print("Ingrese el índice del producto que desea comprar: ");
+                    int productIndex = keyboardInput.nextInt();
+                    saleInterface.purchaseProduct(productIndex);
                     System.out.println("Hacer compra");
                 }
                 case 4 -> {
