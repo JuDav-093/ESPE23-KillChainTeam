@@ -16,7 +16,7 @@ public class PurchaseInterface {
     InputHandler keyboardInput = new InputHandler();
     UserInterface ui = new UserInterface();
     
-    ArrayList<HardwareComponent> hardwareComponents = ui.getInventory().getHardwareComponents();;
+    ArrayList<HardwareComponent> hardwareComponents = ui.getInventory().getHardwareComponents();
     ArrayList<Clothing> clothings = new ArrayList<>();
     ArrayList<Purchase> purchases = new ArrayList<>();
     
@@ -32,12 +32,11 @@ public class PurchaseInterface {
                 case 1 -> {
                     Purchase purchase = new Purchase(hardwareComponents,clothings);   
                     HardwareComponent purchasedComp = createPurchase();
-                    ui.getInventoryFile().updateInventory(ui.getInventory());
                     purchase.toPurchaseHardwareComponents(hardwareComponents,purchasedComp);
                     purchases.add(purchase);
                     purchaseRegisterFile.writePurchaseRegisterFile(purchaseRegister);
-                    ui.getInventory().getHardwareComponents().add(purchasedComp);
                     ui.getInventoryFile().writeInventoryFile(ui.getInventory());
+                    System.out.println(ui.getInventory());
                 }
                 case 2 -> {
                     Purchase purchase = new Purchase(hardwareComponents,clothings);

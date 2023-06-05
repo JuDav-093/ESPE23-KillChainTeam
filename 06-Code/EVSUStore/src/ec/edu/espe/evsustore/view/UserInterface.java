@@ -32,7 +32,6 @@ public class UserInterface {
         while (true) {
 
             showMenu();
-<<<<<<< HEAD
             String input = scanner.next();
             int option; 
             try{    
@@ -42,10 +41,10 @@ public class UserInterface {
                 scanner.nextLine();
                 continue;
             }
-=======
+
             
-            int option = keyboardInput.nextInt();
->>>>>>> origin/main
+            option = keyboardInput.nextInt();
+
             switch (option) {
                 case 1 -> {
                     
@@ -53,6 +52,7 @@ public class UserInterface {
                    
                 }
                 case 2 -> {
+                    
                     inventoryFile.updateInventory(inventory);
                     catalog.displayProducts();
 
