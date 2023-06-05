@@ -15,10 +15,23 @@ import java.util.ArrayList;
  */
 public class PurchaseInterface {
     InputHandler keyboardInput = new InputHandler();
-    UserInterface ui = new UserInterface();
+    private UserInterface ui;
+    
+    public PurchaseInterface(UserInterface ui) {
+        this.ui = ui;
+    }
+    
+    public void setUI(UserInterface ui) {
+        this.ui = ui;
+    }
+
+    public UserInterface getUI() {
+        return ui;
+    }
     
     ArrayList<HardwareComponent> hardwareComponents = new ArrayList<>();
     ArrayList<Clothing> clothings = new ArrayList<>();
+
     ArrayList<Purchase> purchases = new ArrayList<>();
     
     PurchaseRegister purchaseRegister = new PurchaseRegister(purchases);
