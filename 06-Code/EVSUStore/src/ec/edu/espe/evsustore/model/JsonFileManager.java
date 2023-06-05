@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public class JsonFileManager {
     private String fileName;
+    private String path = "";
 
     public JsonFileManager() {
     }
@@ -27,7 +28,7 @@ public class JsonFileManager {
     
     public void createInventoryFile(){
         try {
-            File file = new File(fileName + ".json");
+            File file = new File(path + fileName + ".json");
             
             if(file.exists()){
                 
@@ -42,7 +43,7 @@ public class JsonFileManager {
     }
     
     public void writeInventoryFile(Inventory inventory){
-        File file = new File(fileName + ".json");
+        File file = new File(path + fileName + ".json");
         String dataReaded;
         if (file.exists()){
             dataReaded = readData();
@@ -55,7 +56,7 @@ public class JsonFileManager {
     }
     public void writeIfInventoryFileDoesntExists(Inventory inventory){
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + fileName + ".json"));
             Gson gson = new Gson();
             
             writer.write(gson.toJson(inventory));
@@ -68,7 +69,7 @@ public class JsonFileManager {
     
     public void writeIfInventoryFileExists(Inventory currentInventory, String dataReaded){
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + fileName + ".json"));
             Gson gson = new Gson();
             Type Inventory = new TypeToken<Inventory>(){}.getType();
             Inventory savedInventory = gson.fromJson(dataReaded, Inventory);
@@ -90,7 +91,7 @@ public class JsonFileManager {
     
     public void createSalesRegisterFile(){
         try {
-            File file = new File(fileName + ".json");
+            File file = new File(path +fileName + ".json");
             
             if(file.exists()){
                 
@@ -105,7 +106,7 @@ public class JsonFileManager {
     }
     
     public void writeSalesRegisterFile(SalesRegister salesRegister){
-        File file = new File(fileName + ".json");
+        File file = new File(path + fileName + ".json");
         String dataReaded;
         if (file.exists()){
             dataReaded = readData();
@@ -119,7 +120,7 @@ public class JsonFileManager {
     }
     public void writeIfSalesRegisterFileDoesntExists(SalesRegister salesRegister){
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + fileName + ".json"));
             Gson gson = new Gson();
             
             writer.write(gson.toJson(salesRegister));
@@ -132,7 +133,7 @@ public class JsonFileManager {
     
     public void writeIfSalesRegisterFileExists(SalesRegister salesRegister, String dataReaded){
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + fileName + ".json"));
             Gson gson = new Gson();
             Type SalesRegister = new TypeToken<SalesRegister>(){}.getType();
             SalesRegister savedSalesRegister = gson.fromJson(dataReaded, SalesRegister);
@@ -153,7 +154,7 @@ public class JsonFileManager {
     }
     
     public void writePurchaseRegisterFile(PurchaseRegister purchaseRegister){
-        File file = new File(fileName + ".json");
+        File file = new File(path + fileName + ".json");
         String dataReaded;
         if (file.exists()){
             dataReaded = readData();
@@ -167,9 +168,8 @@ public class JsonFileManager {
     }
     public void writeIfPurchaseRegisterFileDoesntExists(PurchaseRegister purchaseRegister){
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + fileName + ".json"));
             Gson gson = new Gson();
-            
             writer.write(gson.toJson(purchaseRegister));
             writer.flush();
         } 
@@ -180,7 +180,7 @@ public class JsonFileManager {
     
     public void writeIfPurchaseRegisterFileExists(PurchaseRegister purchaseRegister, String dataReaded){
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + fileName + ".json"));
             Gson gson = new Gson();
             Type PurchaseRegister = new TypeToken<PurchaseRegister>(){}.getType();
             PurchaseRegister savedPurchaseRegister = gson.fromJson(dataReaded, PurchaseRegister);
@@ -202,7 +202,7 @@ public class JsonFileManager {
     
     public void createPurchaseRegisterFile(){
         try {
-            File file = new File(fileName + ".json");
+            File file = new File(path + fileName + ".json");
             
             if(file.exists()){
                 
@@ -217,7 +217,7 @@ public class JsonFileManager {
     }
     
     public void updateInventory(Inventory inventory){
-        File file = new File(fileName + ".json");
+        File file = new File(path + fileName + ".json");
         String dataReaded;
         if (file.exists()){
             dataReaded = readData();
@@ -241,7 +241,7 @@ public class JsonFileManager {
     
     
     public void viewInventory(Inventory inventory){
-        File file = new File(fileName + ".json");
+        File file = new File(path + fileName + ".json");
         String dataReaded;
         if (file.exists()){
             dataReaded = readData();
@@ -262,7 +262,7 @@ public class JsonFileManager {
     }
     
     public void viewPurchaseRegister(PurchaseRegister purchaseRegister){
-        File file = new File(fileName + ".json");
+        File file = new File(path + fileName + ".json");
         String dataReaded;
         if (file.exists()){
             dataReaded = readData();
@@ -282,7 +282,7 @@ public class JsonFileManager {
     }
     
     public int searchComponentId(){
-        File file = new File(fileName + ".json");
+        File file = new File(path + fileName + ".json");
         String dataReaded;
         int id;
         
@@ -307,7 +307,7 @@ public class JsonFileManager {
     }
     
     public String readData() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName + ".json"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path + fileName + ".json"))) {
             String content = "";
             String line;
             while ((line = reader.readLine()) != null) {
