@@ -4,6 +4,7 @@ package ec.edu.espe.evsustore.view;
 import ec.edu.espe.evsustore.model.Catalog;
 import ec.edu.espe.evsustore.model.Clothing;
 import ec.edu.espe.evsustore.model.HardwareComponent;
+import ec.edu.espe.evsustore.model.JsonFileManager;
 import java.util.Scanner;
 
 
@@ -14,6 +15,7 @@ import java.util.Scanner;
 public class SaleInterface {
     private Catalog catalog;
     private int currentIndex;
+    JsonFileManager inventoryFile = new JsonFileManager("Inventory");
     
     
     public void displayProducts() {
@@ -85,7 +87,8 @@ public class SaleInterface {
             }
 
             hardwareComponent.setQuantity(hardwareComponent.getQuantity() - quantity);
-            catalog.getInventory().getHardwareComponents().get(productIndex).setQuantity(hardwareComponent.getQuantity());
+            
+            
             System.out.println("Compra realizada exitosamente.");
             
         } else {
