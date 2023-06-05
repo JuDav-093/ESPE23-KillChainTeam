@@ -1,11 +1,15 @@
 
-package ec.edu.espe.evsustore.model;
+package ec.edu.espe.evsustore.view;
 
 /**
  *
  * @author Andres Espin, KillChain, DCOO-ESPE
  */
 
+import ec.edu.espe.evsustore.model.HardwareComponent;
+import ec.edu.espe.evsustore.model.Clothing;
+
+import ec.edu.espe.evsustore.model.Inventory;
 
 public class Catalog {
     private Inventory inventory;
