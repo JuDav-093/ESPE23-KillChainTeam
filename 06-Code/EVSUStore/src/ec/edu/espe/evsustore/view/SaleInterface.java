@@ -46,7 +46,7 @@ public class SaleInterface {
             }
 
             if (currentIndex + 5 >= numProducts) {
-                System.out.println("No hay más productos para mostrar.");
+                System.out.println("No hay mas productos para mostrar.");
                 break;
             }
 
@@ -57,7 +57,7 @@ public class SaleInterface {
             if (input.equals("Q")) {
                 exit = true;
             } else if (!input.equals(" ")) {
-                System.out.println("Entrada inválida. Intente nuevamente.");
+                System.out.println("Entrada invalida. Intente nuevamente.");
             }
 
             currentIndex += 5;
@@ -68,7 +68,7 @@ public class SaleInterface {
 
         int numProducts = catalog.getInventory().getHardwareComponents().size() + catalog.getInventory().getClothes().size();
         if (productIndex < 0 || productIndex >= numProducts) {
-            System.out.println("Índice de producto inválido.");
+            System.out.println("Índice de producto invalido.");
             return;
         }
 
@@ -82,12 +82,11 @@ public class SaleInterface {
             int quantity = scanner.nextInt();
 
             if (quantity <= 0 || quantity > hardwareComponent.getQuantity()) {
-                System.out.println("Cantidad inválida o insuficiente.");
+                System.out.println("Cantidad invalida o insuficiente.");
                 return;
             }
 
             hardwareComponent.setQuantity(hardwareComponent.getQuantity() - quantity);
-            
             
             System.out.println("Compra realizada exitosamente.");
             
@@ -99,7 +98,7 @@ public class SaleInterface {
             int quantity = scanner.nextInt();
 
             if (quantity <= 0 || quantity > clothing.getQuantity()) {
-                System.out.println("Cantidad inválida o insuficiente.");
+                System.out.println("Cantidad invalida o insuficiente.");
                 return;
             }
 

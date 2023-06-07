@@ -38,7 +38,7 @@ public class UserInterface {
             try{    
                 option= option = Integer.parseInt(input);
             }catch(NumberFormatException e){
-                System.out.println("Error: entrada inválida");
+                System.out.println("Error: entrada invalida");
                 scanner.nextLine();
                 continue;
             }
@@ -56,7 +56,7 @@ public class UserInterface {
                 }
                 case 3 -> {
                     saleInterface.displayProducts();
-                    System.out.print("Ingrese el índice del producto que desea comprar: ");
+                    System.out.print("Ingrese el indice del producto que desea comprar: ");
                     int productIndex = keyboardInput.nextInt();
                     saleInterface.purchaseProduct(productIndex);
                     inventoryFile.writeInventoryFile(inventory);
@@ -71,7 +71,7 @@ public class UserInterface {
                     scanner.close();
                     System.exit(0);
                 }
-                default -> System.out.println("Opción inválida");
+                default -> System.out.println("Opción invalida");
             }
         }
     }

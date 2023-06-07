@@ -66,7 +66,7 @@ public class PurchaseInterface {
                 if (continueShopping.equals("s") || continueShopping.equals("n")) {
                     break;
                 } else {
-                    System.out.println("Entrada no válida. Por favor, ingrese S o N.");
+                    System.out.println("Entrada no valida. Por favor, ingrese S o N.");
                 }
             }
 

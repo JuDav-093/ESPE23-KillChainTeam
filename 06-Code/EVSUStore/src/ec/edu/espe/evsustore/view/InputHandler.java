@@ -26,10 +26,10 @@ public class InputHandler {
                 }
                 return num;
             } catch (InputMismatchException e) {
-                System.out.println("Por favor, ingrese un número decimal.");
+                System.out.println("Por favor, ingrese un numero decimal.");
                 scanner.nextLine(); 
             } catch (IllegalArgumentException e) {
-                System.out.println("No se aceptan números negativos. Por favor, ingrese un número positivo.");
+                System.out.println("No se aceptan numeros negativos. Por favor, ingrese un número positivo.");
             }
         }
     }
@@ -43,10 +43,10 @@ public class InputHandler {
                 }
                 return num;
             } catch (InputMismatchException e) {
-                System.out.println("Por favor, ingrese un número entero.");
+                System.out.println("Por favor, ingrese un numero entero.");
                 scanner.nextLine(); 
             } catch (IllegalArgumentException e) {
-                System.out.println("No se aceptan números negativos. Por favor, ingrese un número positivo.");
+                System.out.println("No se aceptan numeros negativos. Por favor, ingrese un numero positivo.");
             }
         }
     }
