@@ -19,7 +19,7 @@ public class HardwareComponent {
     public String toString() {
         return id + " || " + name + " " + model + " || Cantidad: " + quantity + 
                 " || Costo de cada unidad: " + individualCost + 
-                " || Precio a vender cada unidad: " + individualPrice +"\n";
+                " || Precio a vender cada unidad: " + individualPrice;
     }
     
     public HardwareComponent() {
@@ -30,7 +30,7 @@ public class HardwareComponent {
         this.individualPrice = price;
         this.quantity = quantity;
         this.model = model;
-        setTotalPrice();
+        this.totalPrice = calculateTotalCost();
     }
     
     public void setTotalPrice() {

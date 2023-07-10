@@ -15,7 +15,13 @@ public class InputHandler {
         this.scanner = new Scanner(System.in);
     }
 
-
+    public String next(){
+        return scanner.next();
+    }
+    
+    public String nextLine(){
+        return scanner.nextLine();
+    }
 
     public double nextDouble() {
         while (true) {
@@ -49,15 +55,5 @@ public class InputHandler {
                 System.out.println("No se aceptan numeros negativos. Por favor, ingrese un numero positivo.");
             }
         }
-    }
-
-    
-
-    public String next() {
-        return scanner.next();
-    }
-
-    public String nextLine() {
-        return scanner.nextLine();
     }
 }

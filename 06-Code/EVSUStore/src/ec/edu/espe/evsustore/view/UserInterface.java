@@ -57,7 +57,7 @@ public class UserInterface {
                 case 3 -> {
                     saleInterface.displayProducts();
                     System.out.print("Ingrese el indice del producto que desea comprar: ");
-                    int productIndex = keyboardInput.nextInt();
+                    int productIndex = keyboardInput.nextInt()-1;
                     saleInterface.purchaseProduct(productIndex);
                     inventoryFile.writeInventoryFile(inventory);
                 }
