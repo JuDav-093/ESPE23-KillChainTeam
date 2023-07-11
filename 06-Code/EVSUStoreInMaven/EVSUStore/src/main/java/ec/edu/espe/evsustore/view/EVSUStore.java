@@ -1,7 +1,10 @@
 
 package ec.edu.espe.evsustore.view;
 
+import com.mongodb.client.MongoDatabase;
 import ec.edu.espe.evsustore.controller.DatabaseController;
+import ec.edu.espe.evsustore.model.HardwareComponent;
+import ec.edu.espe.evsustore.utils.DatabaseManager;
 import java.awt.BorderLayout;
 
 /**
@@ -9,26 +12,25 @@ import java.awt.BorderLayout;
  * @author Joan Cobeña, KillChain, DCCO-ESPE
  */
 public class EVSUStore extends javax.swing.JFrame {
-
-    DatabaseController database = new DatabaseController();
     
-    /**
-     * Creates new form xd
-     */
+    
     public EVSUStore() {
+        
         initComponents();
+        DatabaseController database = new DatabaseController();
         database.connectDatabase();
         
-        PnelViewInfo pnel = new PnelViewInfo(database);
         
-        pnel.setSize(625,500);
-        pnel.setLocation(0,0);
+        PnelUpdateInventory pnelUpdate = new PnelUpdateInventory();
+        
+        
+        pnelUpdate.setSize(900,675);
+        pnelUpdate.setLocation(0,0);
         Content.removeAll();
-        Content.add(pnel, BorderLayout.CENTER);
+        Content.add(pnelUpdate, BorderLayout.CENTER);
         Content.revalidate();
         Content.repaint();
     }
-    
     
 
     /**
@@ -135,8 +137,6 @@ public class EVSUStore extends javax.swing.JFrame {
             }
         });
     }
-    
-    
       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

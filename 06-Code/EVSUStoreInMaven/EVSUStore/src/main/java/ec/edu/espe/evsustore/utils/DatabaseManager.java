@@ -143,6 +143,105 @@ public class DatabaseManager {
         
         return foundedDocument;
     }
+    
+    public static ArrayList<HardwareComponent> foundComponentCoincidences(MongoCollection<Document> collection, String anyField){
+        ArrayList<Document> foundedCoincidences = searchAllCoincidences(collection, anyField);
+        ArrayList<HardwareComponent> componentCoincidences = new ArrayList<>();
+                
+        for(Document document: foundedCoincidences){
+            if(document != null){
+                int componentId = document.getInteger("id");
+                int quantity = document.getInteger("quantity");
+                double cost = document.getDouble("cost");
+                double price = document.getDouble("price");
+                String name = document.getString("name");
+                String model = document.getString("model");
+
+                HardwareComponent obtainedComponent = new HardwareComponent(componentId, quantity, cost, price, name, model);
+                
+                componentCoincidences.add(obtainedComponent);
+            }
+        }
+        return componentCoincidences;
+    }
+    
+    public static ArrayList<Document> searchAllCoincidences(MongoCollection<Document> collection, String anyField){
+        ArrayList<Document> foundedCoincidences = new ArrayList<>();
+        Document query = new Document();
+        try{
+            int id = Integer.parseInt(anyField);
+            query = new Document("id", id);
+            FindIterable<Document> documents = collection.find(query);
+            for(Document document: documents){
+                foundedCoincidences.add(document);
+            }
+        }
+        catch(Exception e){
+                
+        }
+
+        try{
+            int quantity = Integer.parseInt(anyField);
+            query = new Document("quantity", quantity);
+            FindIterable<Document> documents = collection.find(query);
+            for(Document document: documents){
+                foundedCoincidences.add(document);
+            }
+        }
+        catch(Exception e){
+                
+        }
+            
+        try{
+            String name = anyField;
+            query = new Document("name", name);
+            FindIterable<Document> documents = collection.find(query);
+            for(Document document: documents){
+                foundedCoincidences.add(document);
+            }
+        }
+        catch(Exception e){
+                
+        }  
+        
+        try{
+            String model = anyField;
+            query = new Document("model", model);
+            FindIterable<Document> documents = collection.find(query);
+            for(Document document: documents){
+                foundedCoincidences.add(document);
+            }
+        }
+        catch(Exception e){
+                
+        }
+        
+        try{
+            double cost = Double.parseDouble(anyField);
+            query = new Document("cost", cost);
+            FindIterable<Document> documents = collection.find(query);
+            for(Document document: documents){
+                foundedCoincidences.add(document);
+            }
+        }
+        catch(Exception e){
+                
+        }
+        
+        try{
+            double price = Double.parseDouble(anyField);
+            query = new Document("price", price);
+            FindIterable<Document> documents = collection.find(query);
+            for(Document document: documents){
+                foundedCoincidences.add(document);
+            }
+        }
+        catch(Exception e){
+                
+        }
+        
+        return foundedCoincidences;
+    }
    
 }
 

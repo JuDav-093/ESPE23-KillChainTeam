@@ -16,9 +16,9 @@ public class HardwareComponent {
     
     @Override
     public String toString() {
-        return "ID" + id + " || " + name + " " + model + " || Cantidad: " + quantity + 
-                " || Costo: $" + cost + 
-                " || Precio: $" + price;
+        return  id + "\t|| " + name + "\t|| " + model + "\t|| " + quantity + 
+                "\t|| " + cost + 
+                "\t|| " + price;
     }
 
     public HardwareComponent(int id, int quantity, double cost, double price, String name, String model) {
@@ -30,7 +30,8 @@ public class HardwareComponent {
         this.model = model;
     }
 
-    
+    public HardwareComponent() {
+    }
 
     public int getId() {
         return id;

@@ -11,44 +11,40 @@ import java.util.ArrayList;
  * @author Joan Cobeña, KillChain, DCCO-ESPE
  */
 public class DatabaseController {
-    String clientURL = "mongodb+srv://jcobena:<password>@cluster0.mhpiaao.mongodb.net/";
+    String clientURL = "mongodb+srv://jcobena:jcobena@cluster0.mhpiaao.mongodb.net/";
     String databaseName = "EVSUStore";
-    String selectedCollectionName;
     MongoDatabase database;
-    MongoCollection collection;
     
     public void connectDatabase(){
         database = DatabaseManager.connectToDatabase(clientURL, databaseName);
     }
     
-    public void connectToComponentsCollection(){
-        selectedCollectionName = "HardwareComponents";
-        collection = DatabaseManager.connectToCollection(database, clientURL);
+    public void insertComponent(HardwareComponent hardwareComponent){
+        MongoCollection collection = DatabaseManager.connectToCollection(database, "HardwareComponents");
+        DatabaseManager.insertOne(collection, hardwareComponent);
     }
     
-    public HardwareComponent obatinComponent(int id){
-        connectToComponentsCollection();
-        
+    public HardwareComponent obtainComponent(int id){
+        MongoCollection collection = DatabaseManager.connectToCollection(database, "HardwareComponents");
         HardwareComponent componentInDB = DatabaseManager.obtainComponent(collection, id);
         
         return componentInDB;
     }
     
-    public ArrayList<HardwareComponent> obatinAllComponents(){
-        connectToComponentsCollection();
-        
+    public ArrayList<HardwareComponent> obtainAllComponents(){
+        MongoCollection collection = DatabaseManager.connectToCollection(database, "HardwareComponents");
         ArrayList<HardwareComponent> componentsInDB = DatabaseManager.obtainAllComponents(collection);
         
         return componentsInDB;
     }
-
-    public String getSelectedCollectionName() {
-        return selectedCollectionName;
+    
+    public ArrayList<HardwareComponent> obtainComponentsCoincidence(String field){
+        MongoCollection collection = DatabaseManager.connectToCollection(database, "HardwareComponents");
+        ArrayList<HardwareComponent> componentsCoincidence = DatabaseManager.foundComponentCoincidences(collection, field);
+        
+        return componentsCoincidence;
     }
-
-    public void setSelectedCollectionName(String selectedCollectionName) {
-        this.selectedCollectionName = selectedCollectionName;
-    }
+    
 
     public MongoDatabase getDatabase() {
         return database;
@@ -56,14 +52,6 @@ public class DatabaseController {
 
     public void setDatabase(MongoDatabase database) {
         this.database = database;
-    }
-
-    public MongoCollection getCollection() {
-        return collection;
-    }
-
-    public void setCollection(MongoCollection collection) {
-        this.collection = collection;
     }
     
     
