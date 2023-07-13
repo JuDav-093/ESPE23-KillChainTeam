@@ -136,6 +136,18 @@ public class DatabaseManager {
         return obtainedComponents;
     }
     
+    public static void update(MongoCollection<Document> collection, HardwareComponent component){
+        int id = component.getId();
+        Document documentToUpdate = search(collection, id);
+        Document updatedDocument = createDocument(component);
+        collection.updateOne(documentToUpdate, updatedDocument);
+    }
+    
+    public static void delete(MongoCollection<Document> collection, int id){
+        Document documentToDelete = search(collection, id);
+        collection.deleteOne(documentToDelete);
+    }
+    
     public static Document search(MongoCollection<Document> collection, int id){
         Document query = new Document("id", id);
         FindIterable<Document> documents = collection.find(query);
@@ -143,6 +155,7 @@ public class DatabaseManager {
         
         return foundedDocument;
     }
+
     
     public static ArrayList<HardwareComponent> foundComponentCoincidences(MongoCollection<Document> collection, String anyField){
         ArrayList<Document> foundedCoincidences = searchAllCoincidences(collection, anyField);

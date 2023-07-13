@@ -1,8 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package ec.edu.espe.evsustore.view;
+
+import ec.edu.espe.evsustore.controller.HardwareComponentController;
+import ec.edu.espe.evsustore.controller.ViewController;
+import ec.edu.espe.evsustore.model.HardwareComponent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,6 +19,38 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
      */
     public FrmHardwareComponent() {
         initComponents();
+        
+        int generatedId = HardwareComponentController.generateId();
+        txtId.setText(String.valueOf(generatedId));
+        
+        btnClear.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+
+                    clearFields();
+
+                }
+            }
+        );
+    }
+    
+    public FrmHardwareComponent(HardwareComponent updatingComponent) {
+        initComponents();
+        
+        fillFields(updatingComponent);
+        
+        int idOfUpdating = updatingComponent.getId();
+        
+        btnClear.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+
+                    clearFields(idOfUpdating);
+
+                }
+            }
+        );
+        
     }
 
     /**
@@ -43,13 +79,12 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
         txtModel = new javax.swing.JTextField();
         txtCost = new javax.swing.JTextField();
         txtPrice = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        btnUploadImage = new javax.swing.JButton();
         pnelButtons = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+        btnBackToMainMenu = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -65,23 +100,23 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Quantity:");
+        jLabel2.setText("Cantidad:");
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Name:");
+        jLabel3.setText("Nombre:");
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Model:");
+        jLabel4.setText("Modelo:");
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Cost:");
+        jLabel5.setText("Costo:");
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Price:");
+        jLabel6.setText("Precio:");
 
         txtId.setEditable(false);
         txtId.setBackground(new java.awt.Color(169, 104, 216));
@@ -115,19 +150,12 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
         txtPrice.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtPrice.setForeground(new java.awt.Color(133, 44, 194));
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Upload Image:");
-
-        jButton1.setText("Select File...");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel8.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("COMPONENTE DE HARDWARE");
+
+        btnUploadImage.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnUploadImage.setText("Subir imagen...");
 
         javax.swing.GroupLayout pnelFormLayout = new javax.swing.GroupLayout(pnelForm);
         pnelForm.setLayout(pnelFormLayout);
@@ -156,19 +184,20 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
                                     .addComponent(txtModel)
                                     .addComponent(txtCost)
                                     .addComponent(txtPrice))
-                                .addGap(80, 80, 80)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15)
-                                .addComponent(jButton1))))
+                                .addGap(68, 68, 68)
+                                .addComponent(btnUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnelFormLayout.createSequentialGroup()
                         .addGap(176, 176, 176)
                         .addComponent(jLabel8)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         pnelFormLayout.setVerticalGroup(
             pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnelFormLayout.createSequentialGroup()
                 .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnelFormLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel8))
                     .addGroup(pnelFormLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -177,16 +206,9 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE))
-                    .addGroup(pnelFormLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jButton1))
-                        .addGap(67, 67, 67)))
+                            .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUploadImage))))
+                .addGap(25, 25, 25)
                 .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -207,11 +229,24 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
 
         pnelButtons.setBackground(new java.awt.Color(18, 9, 24));
 
-        jButton2.setText("Añadir");
+        btnSave.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnSave.setText("Guardar Cambios");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Actualizar");
+        btnClear.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnClear.setText("Vaciar Campos");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("Volver al Menú Anterior");
+        btnBackToMainMenu.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnBackToMainMenu.setText("Volver al Menú Anterior");
 
         javax.swing.GroupLayout pnelButtonsLayout = new javax.swing.GroupLayout(pnelButtons);
         pnelButtons.setLayout(pnelButtonsLayout);
@@ -219,21 +254,21 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
             pnelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnelButtonsLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(btnBackToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
         pnelButtonsLayout.setVerticalGroup(
             pnelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnelButtonsLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(pnelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBackToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -270,10 +305,83 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtModelActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        HardwareComponent enteredComponent = readComponent();
+        
+        String warningMessage = "¿Está seguro de que quiere guardar el siguiente producto?\n";
+        String component = enteredComponent.toString().replace("\t|| ", "\n");
+        
+        int option = JOptionPane.showConfirmDialog(this, warningMessage+component);
+        
+        if(option == 0){
+            ViewController.saveComponentInDB(enteredComponent);
+            JOptionPane.showMessageDialog(rootPane, "Se ha guardado exitosamente");
+            clearFields();
+            
+        }
+        else if(option == 1){
+            JOptionPane.showMessageDialog(rootPane, "No guardado");
+            clearFields();
+        }
+        else {
+            
+        }
+        
+        
+    }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        //
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnClearUpdatingActionPerformed(java.awt.event.ActionEvent evt, int id) {                                         
+        //
+    }    
+    
+    private HardwareComponent readComponent() {                                          
+        int id = Integer.parseInt(txtId.getText());
+        int quantity = Integer.parseInt(txtQuantity.getText());
+        String name = txtName.getText();
+        String model = txtModel.getText();
+        Double cost = Double.valueOf(txtCost.getText());
+        Double price = Double.valueOf(txtPrice.getText());
+        
+        HardwareComponent component = new HardwareComponent(id, quantity, cost, price, name, model);
+    
+        return component;
+    }
+    
+    public void clearFields(){
+        String voidString = "";
+        int generatedId = HardwareComponentController.generateId();
+        txtId.setText(String.valueOf(generatedId));
+        txtQuantity.setText(voidString);
+        txtName.setText(voidString);
+        txtModel.setText(voidString);
+        txtCost.setText(voidString);
+        txtPrice.setText(voidString);
+    }
+    
+    public void fillFields(HardwareComponent updatingComponent){
+        String voidString = "";
+        txtId.setText(String.valueOf(updatingComponent.getId()));
+        txtQuantity.setText(String.valueOf(updatingComponent.getQuantity()));
+        txtName.setText(updatingComponent.getName());
+        txtModel.setText(updatingComponent.getModel());
+        txtCost.setText(String.valueOf(updatingComponent.getCost()));
+        txtPrice.setText(String.valueOf(updatingComponent.getPrice()));
+    }
+    
+    public void clearFields(int idOfUpdating){
+        String voidString = "";
+        txtId.setText(String.valueOf(idOfUpdating));
+        txtQuantity.setText(voidString);
+        txtName.setText(voidString);
+        txtModel.setText(voidString);
+        txtCost.setText(voidString);
+        txtPrice.setText(voidString);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -310,17 +418,16 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnBackToMainMenu;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUploadImage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu jPopupMenu1;

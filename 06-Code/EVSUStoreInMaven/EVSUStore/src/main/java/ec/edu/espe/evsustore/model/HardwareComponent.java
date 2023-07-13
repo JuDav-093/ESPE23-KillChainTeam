@@ -81,8 +81,4 @@ public class HardwareComponent {
         this.model = model;
     }
     
-    public static int generateId(){
-        //TODO generateId algorithm
-        return 0;
-    }
 }

@@ -50,6 +50,20 @@ public class DatabaseController {
         return componentsCoincidence;
     }
     
+    public void update(HardwareComponent component) {
+        MongoCollection collection = DatabaseManager.connectToCollection(database, "HardwareComponents");
+        DatabaseManager.update(collection, component);
+    }
+    
+    public void delete(HardwareComponent component) {
+        MongoCollection collection = DatabaseManager.connectToCollection(database, "HardwareComponents");
+        DatabaseManager.delete(collection, component.getId());
+    }
+    
+    public void save(HardwareComponent component) {
+        MongoCollection collection = DatabaseManager.connectToCollection(database, "HardwareComponents");
+        DatabaseManager.insertOne(collection, component);
+    }
 
     public MongoDatabase getDatabase() {
         return database;
