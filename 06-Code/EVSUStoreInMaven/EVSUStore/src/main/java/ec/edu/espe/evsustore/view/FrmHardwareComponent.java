@@ -4,6 +4,8 @@ package ec.edu.espe.evsustore.view;
 import ec.edu.espe.evsustore.controller.HardwareComponentController;
 import ec.edu.espe.evsustore.controller.ViewController;
 import ec.edu.espe.evsustore.model.HardwareComponent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +22,35 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
         
         int generatedId = HardwareComponentController.generateId();
         txtId.setText(String.valueOf(generatedId));
+        
+        btnClear.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+
+                    clearFields();
+
+                }
+            }
+        );
+    }
+    
+    public FrmHardwareComponent(HardwareComponent updatingComponent) {
+        initComponents();
+        
+        fillFields(updatingComponent);
+        
+        int idOfUpdating = updatingComponent.getId();
+        
+        btnClear.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+
+                    clearFields(idOfUpdating);
+
+                }
+            }
+        );
+        
     }
 
     /**
@@ -51,8 +82,8 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         btnUploadImage = new javax.swing.JButton();
         pnelButtons = new javax.swing.JPanel();
-        btnAdd = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
         btnBackToMainMenu = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
@@ -198,19 +229,19 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
 
         pnelButtons.setBackground(new java.awt.Color(18, 9, 24));
 
-        btnAdd.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnAdd.setText("Añadir");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnSave.setText("Guardar Cambios");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
-        btnUpdate.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnUpdate.setText("Actualizar");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnClear.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnClear.setText("Vaciar Campos");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnClearActionPerformed(evt);
             }
         });
 
@@ -223,10 +254,10 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
             pnelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnelButtonsLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(btnBackToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
@@ -235,8 +266,8 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
             .addGroup(pnelButtonsLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(pnelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBackToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -274,10 +305,10 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtModelActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         HardwareComponent enteredComponent = readComponent();
         
-        String warningMessage = "¿Está seguro de que quiere añadir el siguiente producto?\n";
+        String warningMessage = "¿Está seguro de que quiere guardar el siguiente producto?\n";
         String component = enteredComponent.toString().replace("\t|| ", "\n");
         
         int option = JOptionPane.showConfirmDialog(this, warningMessage+component);
@@ -297,11 +328,15 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
         }
         
         
-    }//GEN-LAST:event_btnAddActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        
-    }//GEN-LAST:event_btnUpdateActionPerformed
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        //
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnClearUpdatingActionPerformed(java.awt.event.ActionEvent evt, int id) {                                         
+        //
+    }    
     
     private HardwareComponent readComponent() {                                          
         int id = Integer.parseInt(txtId.getText());
@@ -320,6 +355,26 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
         String voidString = "";
         int generatedId = HardwareComponentController.generateId();
         txtId.setText(String.valueOf(generatedId));
+        txtQuantity.setText(voidString);
+        txtName.setText(voidString);
+        txtModel.setText(voidString);
+        txtCost.setText(voidString);
+        txtPrice.setText(voidString);
+    }
+    
+    public void fillFields(HardwareComponent updatingComponent){
+        String voidString = "";
+        txtId.setText(String.valueOf(updatingComponent.getId()));
+        txtQuantity.setText(String.valueOf(updatingComponent.getQuantity()));
+        txtName.setText(updatingComponent.getName());
+        txtModel.setText(updatingComponent.getModel());
+        txtCost.setText(String.valueOf(updatingComponent.getCost()));
+        txtPrice.setText(String.valueOf(updatingComponent.getPrice()));
+    }
+    
+    public void clearFields(int idOfUpdating){
+        String voidString = "";
+        txtId.setText(String.valueOf(idOfUpdating));
         txtQuantity.setText(voidString);
         txtName.setText(voidString);
         txtModel.setText(voidString);
@@ -363,9 +418,9 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBackToMainMenu;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUploadImage;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -4,7 +4,9 @@ package ec.edu.espe.evsustore.controller;
 import ec.edu.espe.evsustore.model.HardwareComponent;
 import java.util.ArrayList;
 import javax.swing.JTable;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -61,12 +63,26 @@ public class ViewController {
             catlaogTableModel.addRow(componentData);
             
         }
+        
+        
         return catlaogTableModel;
+    }
+    
+    public static void deleteComponentInDB(HardwareComponent component) {
+        DatabaseController database = new DatabaseController();
+        database.connectDatabase();
+        database.delete(component);
     }
     
     public static void saveComponentInDB(HardwareComponent component) {
         DatabaseController database = new DatabaseController();
         database.connectDatabase();
-        database.insertComponent(component);
+        int id = component.getId();
+        if(database.obtainComponent(id)==null){
+            database.insertComponent(component);
+        }
+        else{
+            database.update(component);
+        }
     }
 }
