@@ -45,6 +45,10 @@ public class DatabaseController {
         return componentsCoincidence;
     }
     
+    public void save(HardwareComponent component) {
+        MongoCollection collection = DatabaseManager.connectToCollection(database, "HardwareComponents");
+        DatabaseManager.insertOne(collection, component);
+    }
 
     public MongoDatabase getDatabase() {
         return database;

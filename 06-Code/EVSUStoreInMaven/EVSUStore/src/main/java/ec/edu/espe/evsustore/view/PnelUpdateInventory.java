@@ -2,7 +2,10 @@ package ec.edu.espe.evsustore.view;
 
 
 
-import java.awt.BorderLayout;
+import ec.edu.espe.evsustore.controller.ViewController;
+import ec.edu.espe.evsustore.model.HardwareComponent;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,15 +15,8 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
 
     public PnelUpdateInventory( ) {
         initComponents();
-        PnelViewInfo pnelInfo = new PnelViewInfo();
         
-        pnelInfo.setSize(625, 250);
-        pnelInfo.setLocation(0,0);
-        pnelViewInfo.removeAll();
-        pnelViewInfo.add(pnelInfo, BorderLayout.CENTER);
-        pnelViewInfo.revalidate();
-        pnelViewInfo.repaint();
-        pnelInfo.writeTableComponents();
+        displayTableComponents();
     }
 
     /**
@@ -34,6 +30,8 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         pnelViewInfo = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblComponents = new javax.swing.JTable();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnBacktToInventoryMenu = new javax.swing.JButton();
@@ -41,15 +39,41 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(18, 9, 24));
         jPanel1.setForeground(new java.awt.Color(18, 9, 24));
 
+        tblComponents.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Cantidad", "Nombre", "Modelo", "Costo", "Precio"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblComponents.setRowHeight(25);
+        jScrollPane1.setViewportView(tblComponents);
+
         javax.swing.GroupLayout pnelViewInfoLayout = new javax.swing.GroupLayout(pnelViewInfo);
         pnelViewInfo.setLayout(pnelViewInfoLayout);
         pnelViewInfoLayout.setHorizontalGroup(
             pnelViewInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 625, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
         );
         pnelViewInfoLayout.setVerticalGroup(
             pnelViewInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         btnUpdate.setText("Update");
@@ -89,12 +113,12 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnelViewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete)
                     .addComponent(btnBacktToInventoryMenu))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -117,12 +141,19 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void displayTableComponents() {                                          
+        ArrayList<HardwareComponent> componentsInDb = ViewController.obtainAllComponents();
+        DefaultTableModel tblModel = ViewController.writeTable(componentsInDb, tblComponents);
+        tblComponents.setModel(tblModel);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBacktToInventoryMenu;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pnelViewInfo;
+    private javax.swing.JTable tblComponents;
     // End of variables declaration//GEN-END:variables
 }
