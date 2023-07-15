@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="ec.edu.espe.evsustore.view.PnelViewInfoTest" time="0.003" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="ec.edu.espe.evsustore.view.PnelViewInfoTest" time="0.004" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="17.0.7+8-LTS-224"/>
@@ -28,7 +28,7 @@
     <property name="maven.ext.class.path" value="C:\Program Files\NetBeans-17\netbeans\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="C:\Program Files\NetBeans-17\netbeans\java\maven\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-17\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;%INTEL_DEV_REDIST%redist\intel64_win\compiler;C:\Program Files\Microsoft\jdk-11.0.16.101-hotspot\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Polyspace\R2020b\runtime\win64;C:\Program Files\Polyspace\R2020b\bin;C:\Program Files\Polyspace\R2020b\polyspace\bin;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Program Files\Graphviz\bin;C:\Users\kibok\Downloads\mongosh-1.10.1-win32-x64\bin;C:\Program Files\Git\cmd;C:\Users\kibok\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\kibok\AppData\Local\Programs\Python\Python311\;C:\Users\kibok\AppData\Local\Microsoft\WindowsApps;;C:\Users\kibok\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\kibok\.dotnet\tools;C:\Users\kibok\AppData\Roaming\npm;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-17\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler;C:\Program Files\Microsoft\jdk-11.0.16.101-hotspot\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Polyspace\R2020b\runtime\win64;C:\Program Files\Polyspace\R2020b\bin;C:\Program Files\Polyspace\R2020b\polyspace\bin;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Program Files\Graphviz\bin;C:\Users\kibok\Downloads\mongosh-1.10.1-win32-x64\bin;C:\Program Files\Git\cmd;C:\Users\kibok\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\kibok\AppData\Local\Programs\Python\Python311\;C:\Users\kibok\AppData\Local\Microsoft\WindowsApps;;C:\Users\kibok\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\kibok\.dotnet\tools;C:\Users\kibok\AppData\Roaming\npm;."/>
     <property name="maven.conf" value="C:\Program Files\NetBeans-17\netbeans\java\maven/conf"/>
     <property name="jdk.debug" value="release"/>
     <property name="java.class.version" value="61.0"/>
@@ -44,7 +44,7 @@
     <property name="java.class.path" value="C:\Program Files\NetBeans-17\netbeans\java\maven\boot\plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="17"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans-17\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 --no-transfer-progress clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans-17\netbeans\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 --no-transfer-progress install"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-17"/>
     <property name="user.language" value="es"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -60,6 +60,6 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="ec.edu.espe.evsustore.view.PnelViewInfoTest" name="ec.edu.espe.evsustore.view.PnelViewInfoTest.testSplit" time="0.002"/>
-  <testcase classname="ec.edu.espe.evsustore.view.PnelViewInfoTest" name="ec.edu.espe.evsustore.view.PnelViewInfoTest.testGetIdOfComponentModel" time="0.001"/>
+  <testcase classname="ec.edu.espe.evsustore.view.PnelViewInfoTest" name="ec.edu.espe.evsustore.view.PnelViewInfoTest.testSplit" time="0.004"/>
+  <testcase classname="ec.edu.espe.evsustore.view.PnelViewInfoTest" name="ec.edu.espe.evsustore.view.PnelViewInfoTest.testGetIdOfComponentModel" time="0"/>
 </testsuite>

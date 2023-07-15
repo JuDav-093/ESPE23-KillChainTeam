@@ -10,38 +10,18 @@ import javax.swing.JPanel;
  * @author Joan Cobeña, KillChain, DCCO-ESPE
  */
 public class EVSUStore extends javax.swing.JFrame {
-    
-    
+    DatabaseController database = new DatabaseController();
     public EVSUStore() {
         initComponents();
-
         PnelStart pnelStart=new PnelStart();
         showPanel(pnelStart);
-
-
-        DatabaseController database = new DatabaseController();
         database.connectDatabase();
         
-        
-        PnelUpdateInventory pnelUpdate = new PnelUpdateInventory();
-        
-        
-        pnelUpdate.setSize(900,400);
-        pnelUpdate.setLocation(0,0);
-        Content.removeAll();
-        Content.add(pnelUpdate, BorderLayout.CENTER);
-        Content.revalidate();
-        Content.repaint();
-
     }
     
 
     
-    private void ConectDataBase(){
-        initComponents();
-        DatabaseController database = new DatabaseController();
-        database.connectDatabase();
-    }
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

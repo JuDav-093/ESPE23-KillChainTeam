@@ -29,23 +29,25 @@ public class PnelStart extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
-        jLabel2.setText("jLabel2");
+        jPanel1.setBackground(new java.awt.Color(134, 44, 195));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\kibok\\OneDrive\\Desktop\\POO202305\\ESPE23-KillChainTeam\\06-Code\\EVSUStoreInMaven\\EVSUStore\\src\\main\\resources\\logo-removebg-preview.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(683, Short.MAX_VALUE)
+                .addContainerGap(650, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(180, 180, 180))
+                .addGap(259, 259, 259))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(79, 79, 79)
                 .addComponent(jLabel2)
-                .addContainerGap(592, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
