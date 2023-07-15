@@ -17,6 +17,20 @@ public class EVSUStore extends javax.swing.JFrame {
         showPanel(pnelStart);
         database.connectDatabase();
         
+<<<<<<< HEAD
+=======
+        
+        PnelUpdateInventory pnelUpdate = new PnelUpdateInventory();
+        
+        
+        pnelUpdate.setSize(900,675);
+        pnelUpdate.setLocation(0,0);
+        Content.removeAll();
+        Content.add(pnelUpdate, BorderLayout.CENTER);
+        Content.revalidate();
+        Content.repaint();
+
+>>>>>>> origin/main
     }
     
 

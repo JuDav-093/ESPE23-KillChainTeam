@@ -64,6 +64,28 @@ public class ViewController {
             
         }
         
+        return catlaogTableModel;
+    }
+    
+    public static DefaultTableModel writeBillTable(ArrayList<HardwareComponent> components, JTable tblComponents) {
+        DefaultTableModel catlaogTableModel = new DefaultTableModel();
+        
+        Object[] componentData = new Object[tblComponents.getColumnCount()];
+        
+        String[] header = {"ID","DESCRIPCIÓN","PRECIO UNIT.","DESCUENTO","PRECIO TOTAL"};
+        
+        catlaogTableModel.setColumnIdentifiers(header);
+        
+        for(HardwareComponent component: components){
+            
+            componentData[0] = component.getName()+component.getModel();
+            componentData[1] = component.getPrice();
+            componentData[2] = component.getQuantity();
+            componentData[4] = component.getPrice() * component.getQuantity();
+            
+            catlaogTableModel.addRow(componentData);
+            
+        }
         
         return catlaogTableModel;
     }
