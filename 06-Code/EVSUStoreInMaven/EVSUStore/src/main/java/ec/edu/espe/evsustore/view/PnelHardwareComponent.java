@@ -6,21 +6,18 @@ import ec.edu.espe.evsustore.controller.ViewController;
 import ec.edu.espe.evsustore.model.HardwareComponent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  *
  * @author Joan Cobeña, KillChain, DCCO-ESPE
  */
-public class FrmHardwareComponent extends javax.swing.JFrame {
+public class PnelHardwareComponent extends javax.swing.JFrame {
 
     /**
      * Creates new form FrmHardwareComponent
      */
-    public FrmHardwareComponent() {
+    public PnelHardwareComponent() {
         initComponents();
         
         int generatedId = HardwareComponentController.generateId();
@@ -35,14 +32,9 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
                 }
             }
         );
-        
-        txtCost.addKeyListener(doubleListener());
-        txtPrice.addKeyListener(doubleListener());
-        txtName.addKeyListener(alphabeticListener());
-        
     }
     
-    public FrmHardwareComponent(HardwareComponent updatingComponent) {
+    public PnelHardwareComponent(HardwareComponent updatingComponent) {
         initComponents();
         
         fillFields(updatingComponent);
@@ -59,8 +51,6 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
             }
         );
         
-        txtCost.addKeyListener(doubleListener());
-        txtPrice.addKeyListener(doubleListener());
     }
 
     /**
@@ -348,70 +338,7 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
         //
     }   
     
-    private KeyListener doubleListener (){
-        KeyListener doubleKeyListener = new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                validateTypedDoubleNumbers(e);
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-             
-            }
-        };
-        return doubleKeyListener;
-    }
     
-    private KeyListener alphabeticListener (){
-        KeyListener alphabeticKeyListener = new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                validateTypedCharacters(e);
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-              
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                
-            }
-        };
-        return alphabeticKeyListener;
-    }
-    
-    private void validateTypedCharacters (java.awt.event.KeyEvent evt) { 
-        char enteredChar = evt.getKeyChar ();  
-        if (!Character.toString (enteredChar).matches ("[a-zA-ZáéíóúÁÉÍÓÚñÑ]")){
-            evt.consume ();
-        } 
-    }
-    
-    private void validateTypedDoubleNumbers (java.awt.event.KeyEvent evt) { 
-        
-        char enteredChar = evt.getKeyChar ();
-        if (!Character.toString (enteredChar).matches ("[0-9\\.]")) {
-            evt.consume ();
-        }
-        else {
-            JTextField field = (JTextField) evt.getSource ();
-            String numbersText = field.getText ();
-            if(numbersText!=null){
-                if (numbersText.matches ("[0-9]+((\\.){1}[0-9]{2})")) {
-                    evt.consume ();
-                }
-            }
-            
-        }
-    }
     
     private HardwareComponent readComponent() {                                          
         int id = Integer.parseInt(txtId.getText());
@@ -474,20 +401,21 @@ public class FrmHardwareComponent extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmHardwareComponent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PnelHardwareComponent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmHardwareComponent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PnelHardwareComponent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmHardwareComponent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PnelHardwareComponent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmHardwareComponent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PnelHardwareComponent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmHardwareComponent().setVisible(true);
+                new PnelHardwareComponent().setVisible(true);
             }
         });
     }

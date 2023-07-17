@@ -107,4 +107,7 @@ public class ViewController {
             database.update(component);
         }
     }
+    
+    
+    
 }

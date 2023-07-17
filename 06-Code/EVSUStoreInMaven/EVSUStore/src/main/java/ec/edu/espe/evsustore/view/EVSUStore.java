@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Joan CobeÃ±a, KillChain, DCCO-ESPE
+ * @author Joan Cobeña, KillChain, DCCO-ESPE
  */
 public class EVSUStore extends javax.swing.JFrame {
     DatabaseController database = new DatabaseController();
@@ -19,7 +19,7 @@ public class EVSUStore extends javax.swing.JFrame {
         initComponents();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         
-        // Establecer el tamaÃ±o del JFrame para que ocupe toda la pantalla
+        // Establecer el tamaño del JFrame para que ocupe toda la pantalla
         setPreferredSize(screenSize);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
@@ -28,6 +28,7 @@ public class EVSUStore extends javax.swing.JFrame {
         showPanel(pnelStart);
         database.connectDatabase();
         
+
 
         PnelUpdateInventory pnelUpdate = new PnelUpdateInventory();
         
@@ -122,7 +123,7 @@ public class EVSUStore extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/EvsuStoreSystem1.png"))); // NOI18N
 
-        btnChangePassword.setText("Cambiar ContraseÃ±a");
+        btnChangePassword.setText("Cambiar Contraseña");
         btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChangePasswordActionPerformed(evt);
