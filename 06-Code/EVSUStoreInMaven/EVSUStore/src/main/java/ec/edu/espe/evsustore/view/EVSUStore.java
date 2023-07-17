@@ -17,8 +17,7 @@ public class EVSUStore extends javax.swing.JFrame {
         showPanel(pnelStart);
         database.connectDatabase();
         
-<<<<<<< HEAD
-=======
+
         
         PnelUpdateInventory pnelUpdate = new PnelUpdateInventory();
         
@@ -30,7 +29,7 @@ public class EVSUStore extends javax.swing.JFrame {
         Content.revalidate();
         Content.repaint();
 
->>>>>>> origin/main
+
     }
     
 
