@@ -9,6 +9,7 @@ C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStore
 C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStoreInMaven\EVSUStore\src\main\java\ec\edu\espe\evsustore\model\Order.java
 C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStoreInMaven\EVSUStore\src\main\java\ec\edu\espe\evsustore\controller\DatabaseController.java
 C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStoreInMaven\EVSUStore\src\main\java\ec\edu\espe\evsustore\view\PnelViewInfo.java
+C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStoreInMaven\EVSUStore\src\main\java\ec\edu\espe\evsustore\view\PnelChangePassword.java
 C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStoreInMaven\EVSUStore\src\main\java\ec\edu\espe\evsustore\view\FrmHardwareComponent.java
 C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStoreInMaven\EVSUStore\src\main\java\ec\edu\espe\evsustore\model\Customer.java
 C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStoreInMaven\EVSUStore\src\main\java\ec\edu\espe\evsustore\view\PnelUpdateInventory.java
@@ -22,5 +23,7 @@ C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStore
 C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStoreInMaven\EVSUStore\src\main\java\ec\edu\espe\evsustore\model\Sale.java
 C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStoreInMaven\EVSUStore\src\main\java\ec\edu\espe\evsustore\view\Bill.java
 C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStoreInMaven\EVSUStore\src\main\java\ec\edu\espe\evsustore\view\PnelSales.java
+C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStoreInMaven\EVSUStore\src\main\java\ec\edu\espe\evsustore\view\FrmRecoverPassword.java
 C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStoreInMaven\EVSUStore\src\main\java\ec\edu\espe\evsustore\view\PnelInventory.java
 C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStoreInMaven\EVSUStore\src\main\java\ec\edu\espe\evsustore\view\PnelStart.java
+C:\Users\kibok\OneDrive\Desktop\POO202305\ESPE23-KillChainTeam\06-Code\EVSUStoreInMaven\EVSUStore\src\main\java\ec\edu\espe\evsustore\controller\TransactionsController.java

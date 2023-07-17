@@ -3,6 +3,10 @@ package ec.edu.espe.evsustore.view;
 
 import ec.edu.espe.evsustore.controller.DatabaseController;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -13,13 +17,18 @@ public class EVSUStore extends javax.swing.JFrame {
     DatabaseController database = new DatabaseController();
     public EVSUStore() {
         initComponents();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        
+        // Establecer el tamaño del JFrame para que ocupe toda la pantalla
+        setPreferredSize(screenSize);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setResizable(false);
+        
         PnelStart pnelStart=new PnelStart();
         showPanel(pnelStart);
         database.connectDatabase();
         
-<<<<<<< HEAD
-=======
-        
+
         PnelUpdateInventory pnelUpdate = new PnelUpdateInventory();
         
         
@@ -30,7 +39,7 @@ public class EVSUStore extends javax.swing.JFrame {
         Content.revalidate();
         Content.repaint();
 
->>>>>>> origin/main
+
     }
     
 
@@ -54,6 +63,7 @@ public class EVSUStore extends javax.swing.JFrame {
         btnRegister = new javax.swing.JButton();
         btnPurchase1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnChangePassword = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -112,6 +122,13 @@ public class EVSUStore extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/EvsuStoreSystem1.png"))); // NOI18N
 
+        btnChangePassword.setText("Cambiar Contraseña");
+        btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangePasswordActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -125,7 +142,8 @@ public class EVSUStore extends javax.swing.JFrame {
                             .addComponent(btnInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCatalog, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSales, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -136,9 +154,9 @@ public class EVSUStore extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jLabel1)
-                .addGap(118, 118, 118)
+                .addGap(82, 82, 82)
                 .addComponent(btnInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(btnCatalog, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSales, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,6 +164,8 @@ public class EVSUStore extends javax.swing.JFrame {
                 .addComponent(btnPurchase1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -160,13 +180,13 @@ public class EVSUStore extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jMenu1.setText("File");
@@ -214,6 +234,11 @@ public class EVSUStore extends javax.swing.JFrame {
     private void btnPurchase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchase1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPurchase1ActionPerformed
+
+    private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
+        PnelChangePassword pnelChangePassword=new PnelChangePassword();
+        showPanel(pnelChangePassword);
+    }//GEN-LAST:event_btnChangePasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,6 +292,7 @@ public class EVSUStore extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Content;
     private javax.swing.JButton btnCatalog;
+    private javax.swing.JButton btnChangePassword;
     private javax.swing.JButton btnInventory;
     private javax.swing.JButton btnPurchase1;
     private javax.swing.JButton btnRegister;

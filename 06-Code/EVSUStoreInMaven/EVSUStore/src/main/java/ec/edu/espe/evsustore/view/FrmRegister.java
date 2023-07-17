@@ -5,6 +5,9 @@
 package ec.edu.espe.evsustore.view;
 
 import ec.edu.espe.evsustore.controller.DatabaseController;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +19,12 @@ public class FrmRegister extends javax.swing.JFrame {
     DatabaseController database = new DatabaseController();
     public FrmRegister() {
         initComponents();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        
+        // Establecer el tamaño del JFrame para que ocupe toda la pantalla
+        setPreferredSize(screenSize);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setResizable(false);
     }
 
     /**
@@ -179,10 +188,10 @@ public class FrmRegister extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreteUserActionPerformed
-        String name = txtName.getText();
-        String lastName = txtLastName.getText();
-        String username = txtUserName.getText();
-        String password = new String(txtPassword.getPassword());
+        String name = txtName.getText().trim();
+        String lastName = txtLastName.getText().trim();
+        String username = txtUserName.getText().trim();
+        String password = new String(txtPassword.getPassword()).trim();
 
         DatabaseController databaseController = new DatabaseController();
         databaseController.connectDatabase();
