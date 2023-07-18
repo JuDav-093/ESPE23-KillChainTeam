@@ -7,6 +7,7 @@ import ec.edu.espe.evsustore.utils.DatabaseManager;
 import java.util.ArrayList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
+import ec.edu.espe.evsustore.model.Clothing;
 import org.bson.Document;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -48,6 +49,12 @@ public class DatabaseController {
         ArrayList<HardwareComponent> componentsCoincidence = DatabaseManager.foundComponentCoincidences(collection, field);
         
         return componentsCoincidence;
+    }
+    public ArrayList<Clothing> obtainClothingsCoincidence(String field){
+        MongoCollection collection = DatabaseManager.connectToCollection(database, "Clothins");
+        ArrayList<Clothing> clothinsCoincidence = DatabaseManager.foundComponentCoincidences(collection, field);
+        
+        return clothinsCoincidence;
     }
     
     public void update(HardwareComponent component) {
@@ -118,7 +125,6 @@ public class DatabaseController {
         for (Document document : documents) {
             String oldPassword = document.getString("password");
 
-            // Verificar si la contraseña ya está encriptada con BCrypt
             if (!oldPassword.startsWith("$2a$")) {
                 String newPassword = BCrypt.hashpw(oldPassword, BCrypt.gensalt());
                 document.put("password", newPassword);
@@ -204,17 +210,14 @@ public class DatabaseController {
     
     
     public String generateTemporaryPassword() {
-        // Generar una contraseña temporal aleatoria
+        
         String temporaryPassword = generateRandomPassword();    
-
-        // Encriptar la contraseña temporal con BCrypt
         String hashedPassword = BCrypt.hashpw(temporaryPassword, BCrypt.gensalt());
-
         return hashedPassword;
     }
     public String generateRandomPassword() {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        int length = 8; // Longitud de la contraseña temporal
+        int length = 8;
 
         StringBuilder password = new StringBuilder();
         Random random = new Random();
@@ -235,10 +238,8 @@ public class DatabaseController {
 
         Document user = collection.find(query).first();
         if (user != null) {
-            // Encriptar la nueva contraseña con BCrypt
+           
             String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
-
-            // Actualizar la contraseña encriptada y la contraseña temporal en el documento de usuario
             user.put("password", hashedPassword);
             user.put("temporaryPassword", temporaryPassword);
 

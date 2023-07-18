@@ -4,18 +4,23 @@ package ec.edu.espe.evsustore.view;
 import ec.edu.espe.evsustore.controller.HardwareComponentController;
 import ec.edu.espe.evsustore.controller.ViewController;
 import ec.edu.espe.evsustore.model.HardwareComponent;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
- * @author Joan Cobeña, KillChain, DCCO-ESPE
+ * @author Andres Espin, KillChain, DCOO-ESPE
  */
-public class PnelHardwareComponent extends javax.swing.JFrame {
+public class PnelHardwareComponent extends javax.swing.JPanel {
 
     /**
-     * Creates new form FrmHardwareComponent
+     * Creates new form PnelHardwareComponent
      */
     public PnelHardwareComponent() {
         initComponents();
@@ -32,6 +37,10 @@ public class PnelHardwareComponent extends javax.swing.JFrame {
                 }
             }
         );
+        
+        txtCost.addKeyListener(doubleListener());
+        txtPrice.addKeyListener(doubleListener());
+        txtName.addKeyListener(alphabeticListener());
     }
     
     public PnelHardwareComponent(HardwareComponent updatingComponent) {
@@ -51,7 +60,10 @@ public class PnelHardwareComponent extends javax.swing.JFrame {
             }
         );
         
+        txtCost.addKeyListener(doubleListener());
+        txtPrice.addKeyListener(doubleListener());
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,11 +74,7 @@ public class PnelHardwareComponent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        jPopupMenu2 = new javax.swing.JPopupMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        pnelComponentsForm = new javax.swing.JPanel();
-        pnelForm = new javax.swing.JPanel();
+        Content = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -81,18 +89,11 @@ public class PnelHardwareComponent extends javax.swing.JFrame {
         txtPrice = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnUploadImage = new javax.swing.JButton();
-        pnelButtons = new javax.swing.JPanel();
-        btnSave = new javax.swing.JButton();
-        btnClear = new javax.swing.JButton();
-        btnBackToMainMenu = new javax.swing.JButton();
+        btnSave5 = new javax.swing.JButton();
+        btnClear5 = new javax.swing.JButton();
+        btnBackToMainMenu5 = new javax.swing.JButton();
 
-        jMenuItem1.setText("jMenuItem1");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        pnelComponentsForm.setBackground(new java.awt.Color(18, 9, 24));
-
-        pnelForm.setBackground(new java.awt.Color(18, 9, 24));
+        Content.setBackground(new java.awt.Color(18, 9, 24));
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -123,17 +124,13 @@ public class PnelHardwareComponent extends javax.swing.JFrame {
         txtId.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txtId.setForeground(new java.awt.Color(133, 44, 194));
         txtId.setEnabled(false);
-        txtId.setOpaque(false);
 
-        txtQuantity.setBackground(new java.awt.Color(255, 255, 255));
         txtQuantity.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtQuantity.setForeground(new java.awt.Color(133, 44, 194));
 
-        txtName.setBackground(new java.awt.Color(255, 255, 255));
         txtName.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtName.setForeground(new java.awt.Color(133, 44, 194));
 
-        txtModel.setBackground(new java.awt.Color(255, 255, 255));
         txtModel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtModel.setForeground(new java.awt.Color(133, 44, 194));
         txtModel.addActionListener(new java.awt.event.ActionListener() {
@@ -142,11 +139,9 @@ public class PnelHardwareComponent extends javax.swing.JFrame {
             }
         });
 
-        txtCost.setBackground(new java.awt.Color(255, 255, 255));
         txtCost.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtCost.setForeground(new java.awt.Color(133, 44, 194));
 
-        txtPrice.setBackground(new java.awt.Color(255, 255, 255));
         txtPrice.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         txtPrice.setForeground(new java.awt.Color(133, 44, 194));
 
@@ -157,188 +152,273 @@ public class PnelHardwareComponent extends javax.swing.JFrame {
         btnUploadImage.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnUploadImage.setText("Subir imagen...");
 
-        javax.swing.GroupLayout pnelFormLayout = new javax.swing.GroupLayout(pnelForm);
-        pnelForm.setLayout(pnelFormLayout);
-        pnelFormLayout.setHorizontalGroup(
-            pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnelFormLayout.createSequentialGroup()
-                .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnelFormLayout.createSequentialGroup()
+        btnSave5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnSave5.setText("Guardar Cambios");
+        btnSave5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
+        Content.setLayout(ContentLayout);
+        ContentLayout.setHorizontalGroup(
+            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContentLayout.createSequentialGroup()
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContentLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnelFormLayout.createSequentialGroup()
+                        .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ContentLayout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnelFormLayout.createSequentialGroup()
-                                .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(ContentLayout.createSequentialGroup()
+                                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                                     .addComponent(txtQuantity)
                                     .addComponent(txtModel)
                                     .addComponent(txtCost)
                                     .addComponent(txtPrice))
                                 .addGap(68, 68, 68)
-                                .addComponent(btnUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(pnelFormLayout.createSequentialGroup()
+                                .addComponent(btnUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnSave5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(ContentLayout.createSequentialGroup()
                         .addGap(176, 176, 176)
                         .addComponent(jLabel8)))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
-        pnelFormLayout.setVerticalGroup(
-            pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnelFormLayout.createSequentialGroup()
-                .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnelFormLayout.createSequentialGroup()
+        ContentLayout.setVerticalGroup(
+            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContentLayout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jLabel8))
-                    .addGroup(pnelFormLayout.createSequentialGroup()
+                    .addGroup(ContentLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
-                        .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
-                        .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnUploadImage))))
                 .addGap(25, 25, 25)
-                .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addGroup(pnelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
                     .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addComponent(btnSave5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
 
-        pnelButtons.setBackground(new java.awt.Color(18, 9, 24));
-
-        btnSave.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnSave.setText("Guardar Cambios");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
+        btnClear5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnClear5.setText("Vaciar Campos");
+        btnClear5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+                btnClear5ActionPerformed(evt);
             }
         });
 
-        btnClear.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnClear.setText("Vaciar Campos");
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
+        btnBackToMainMenu5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnBackToMainMenu5.setText("Volver al Menú Anterior");
+        btnBackToMainMenu5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearActionPerformed(evt);
+                btnBackToMainMenu5ActionPerformed(evt);
             }
         });
 
-        btnBackToMainMenu.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnBackToMainMenu.setText("Volver al Menú Anterior");
-
-        javax.swing.GroupLayout pnelButtonsLayout = new javax.swing.GroupLayout(pnelButtons);
-        pnelButtons.setLayout(pnelButtonsLayout);
-        pnelButtonsLayout.setHorizontalGroup(
-            pnelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnelButtonsLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(btnBackToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
-        );
-        pnelButtonsLayout.setVerticalGroup(
-            pnelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnelButtonsLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(pnelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBackToMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout pnelComponentsFormLayout = new javax.swing.GroupLayout(pnelComponentsForm);
-        pnelComponentsForm.setLayout(pnelComponentsFormLayout);
-        pnelComponentsFormLayout.setHorizontalGroup(
-            pnelComponentsFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnelForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnelButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        pnelComponentsFormLayout.setVerticalGroup(
-            pnelComponentsFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnelComponentsFormLayout.createSequentialGroup()
-                .addComponent(pnelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnelButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnelComponentsForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(204, 204, 204)
+                .addComponent(btnClear5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBackToMainMenu5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnelComponentsForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(427, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnClear5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBackToMainMenu5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtModelActionPerformed
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+    private void btnSave5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave5ActionPerformed
         HardwareComponent enteredComponent = readComponent();
-        
+
         String warningMessage = "¿Está seguro de que quiere guardar el siguiente producto?\n";
         String component = enteredComponent.toString().replace("\t|| ", "\n");
-        
-        int option = JOptionPane.showConfirmDialog(this, warningMessage+component);
-        
-        if(option == 0){
+
+        int option = JOptionPane.showConfirmDialog(getRootPane(), warningMessage + component);
+
+        if (option == 0) {
             ViewController.saveComponentInDB(enteredComponent);
-            JOptionPane.showMessageDialog(rootPane, "Se ha guardado exitosamente");
+            JOptionPane.showMessageDialog(getRootPane(), "Se ha guardado exitosamente");
             clearFields();
-            
+
+        } else if (option == 1) {
+            JOptionPane.showMessageDialog(getRootPane(), "No guardado");
+            clearFields();
+        } else {
+
         }
-        else if(option == 1){
-            JOptionPane.showMessageDialog(rootPane, "No guardado");
-            clearFields();
+    }//GEN-LAST:event_btnSave5ActionPerformed
+
+    private void btnClear5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClear5ActionPerformed
+        //
+    }//GEN-LAST:event_btnClear5ActionPerformed
+
+    private void btnBackToMainMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackToMainMenu5ActionPerformed
+        PnelInventory pnelInventory=new PnelInventory();
+        showPanel(pnelInventory);
+    }//GEN-LAST:event_btnBackToMainMenu5ActionPerformed
+  
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Content;
+    private javax.swing.JButton btnBackToMainMenu;
+    private javax.swing.JButton btnBackToMainMenu1;
+    private javax.swing.JButton btnBackToMainMenu2;
+    private javax.swing.JButton btnBackToMainMenu3;
+    private javax.swing.JButton btnBackToMainMenu4;
+    private javax.swing.JButton btnBackToMainMenu5;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnClear1;
+    private javax.swing.JButton btnClear2;
+    private javax.swing.JButton btnClear3;
+    private javax.swing.JButton btnClear4;
+    private javax.swing.JButton btnClear5;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSave1;
+    private javax.swing.JButton btnSave2;
+    private javax.swing.JButton btnSave3;
+    private javax.swing.JButton btnSave4;
+    private javax.swing.JButton btnSave5;
+    private javax.swing.JButton btnUploadImage;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel pnelButtons;
+    private javax.swing.JPanel pnelButtons1;
+    private javax.swing.JPanel pnelButtons2;
+    private javax.swing.JPanel pnelButtons3;
+    private javax.swing.JPanel pnelButtons4;
+    private javax.swing.JTextField txtCost;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtModel;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtQuantity;
+    // End of variables declaration//GEN-END:variables
+    private KeyListener doubleListener (){
+        KeyListener doubleKeyListener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                validateTypedDoubleNumbers(e);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+            
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+             
+            }
+        };
+        return doubleKeyListener;
+    }
+    
+    private KeyListener alphabeticListener (){
+        KeyListener alphabeticKeyListener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                validateTypedCharacters(e);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+              
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                
+            }
+        };
+        return alphabeticKeyListener;
+    }
+    
+    private void validateTypedCharacters (java.awt.event.KeyEvent evt) { 
+        char enteredChar = evt.getKeyChar ();  
+        if (!Character.toString (enteredChar).matches ("[a-zA-ZáéíóúÁÉÍÓÚñÑ]")){
+            evt.consume ();
+        } 
+    }
+    
+    private void validateTypedDoubleNumbers (java.awt.event.KeyEvent evt) { 
+        
+        char enteredChar = evt.getKeyChar ();
+        if (!Character.toString (enteredChar).matches ("[0-9\\.]")) {
+            evt.consume ();
         }
         else {
+            JTextField field = (JTextField) evt.getSource ();
+            String numbersText = field.getText ();
+            if(numbersText!=null){
+                if (numbersText.matches ("[0-9]+((\\.){1}[0-9]{2})")) {
+                    evt.consume ();
+                }
+            }
             
         }
-        
-        
-    }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        //
-    }//GEN-LAST:event_btnClearActionPerformed
-
-    private void btnClearUpdatingActionPerformed(java.awt.event.ActionEvent evt, int id) {                                         
-        //
-    }   
-    
-    
+    }
     
     private HardwareComponent readComponent() {                                          
         int id = Integer.parseInt(txtId.getText());
@@ -364,6 +444,15 @@ public class PnelHardwareComponent extends javax.swing.JFrame {
         txtPrice.setText(voidString);
     }
     
+    private void showPanel(JPanel panelUI) {
+        panelUI.setSize(900, 675);
+        panelUI.setLocation(0, 0);
+        Content.removeAll();
+        Content.add(panelUI, BorderLayout.CENTER);
+        Content.revalidate();
+        Content.repaint();
+    }
+    
     public void fillFields(HardwareComponent updatingComponent){
         String voidString = "";
         txtId.setText(String.valueOf(updatingComponent.getId()));
@@ -384,65 +473,5 @@ public class PnelHardwareComponent extends javax.swing.JFrame {
         txtPrice.setText(voidString);
     }
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PnelHardwareComponent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PnelHardwareComponent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PnelHardwareComponent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PnelHardwareComponent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PnelHardwareComponent().setVisible(true);
-            }
-        });
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBackToMainMenu;
-    private javax.swing.JButton btnClear;
-    private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnUploadImage;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JPopupMenu jPopupMenu2;
-    private javax.swing.JPanel pnelButtons;
-    private javax.swing.JPanel pnelComponentsForm;
-    private javax.swing.JPanel pnelForm;
-    private javax.swing.JTextField txtCost;
-    private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtModel;
-    private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPrice;
-    private javax.swing.JTextField txtQuantity;
-    // End of variables declaration//GEN-END:variables
 }

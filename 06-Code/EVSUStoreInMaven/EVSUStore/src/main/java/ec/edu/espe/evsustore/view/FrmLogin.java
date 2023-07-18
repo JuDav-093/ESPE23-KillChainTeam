@@ -263,7 +263,7 @@ public class FrmLogin extends javax.swing.JFrame {
         if(username.isEmpty() || password.isEmpty()){
             JOptionPane.showMessageDialog(this, "Algun campo está vacío, intentelo de nuevo", "ERROR DE INGRESO", JOptionPane.INFORMATION_MESSAGE);
         }else{
-            // Migrar contraseñas sin encriptar a BCrypt (solo si es necesario)
+            
             database.migratePasswordsToBCrypt();
 
             if (database.checkCredentials(username, password)) {
