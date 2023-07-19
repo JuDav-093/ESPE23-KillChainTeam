@@ -12,7 +12,6 @@ import java.awt.print.PrinterException;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author Joan Cobeña, KillChain, DCCO-ESPE

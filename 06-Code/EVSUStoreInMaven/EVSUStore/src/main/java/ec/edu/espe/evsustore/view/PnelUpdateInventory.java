@@ -4,9 +4,7 @@ package ec.edu.espe.evsustore.view;
 
 import ec.edu.espe.evsustore.controller.ViewController;
 import ec.edu.espe.evsustore.model.HardwareComponent;
-import java.awt.BorderLayout;
 import java.util.ArrayList;
-import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -34,57 +32,17 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Content = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         pnelViewInfo = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblComponents = new javax.swing.JTable();
+        pnelButtons = new javax.swing.JPanel();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnBacktToInventoryMenu = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblComponents = new javax.swing.JTable();
 
-        Content.setBackground(new java.awt.Color(18, 9, 24));
-        Content.setForeground(new java.awt.Color(18, 9, 24));
-        Content.setPreferredSize(new java.awt.Dimension(848, 770));
-
-        javax.swing.GroupLayout pnelViewInfoLayout = new javax.swing.GroupLayout(pnelViewInfo);
-        pnelViewInfo.setLayout(pnelViewInfoLayout);
-        pnelViewInfoLayout.setHorizontalGroup(
-            pnelViewInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 695, Short.MAX_VALUE)
-        );
-        pnelViewInfoLayout.setVerticalGroup(
-            pnelViewInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        btnUpdate.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnUpdate.setText("Actualizar");
-        btnUpdate.setEnabled(false);
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        btnDelete.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnDelete.setText("Borrar");
-        btnDelete.setEnabled(false);
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
-        btnBacktToInventoryMenu.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        btnBacktToInventoryMenu.setText("Volver al Menú de Inventario");
-        btnBacktToInventoryMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBacktToInventoryMenuActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/EvsuStoreSystem1.png"))); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(18, 9, 24));
+        jPanel1.setForeground(new java.awt.Color(18, 9, 24));
 
         tblComponents.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         tblComponents.setModel(new javax.swing.table.DefaultTableModel(
@@ -124,82 +82,110 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblComponents);
 
-        javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
-        Content.setLayout(ContentLayout);
-        ContentLayout.setHorizontalGroup(
-            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ContentLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnelViewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(ContentLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ContentLayout.createSequentialGroup()
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(122, 122, 122)
-                        .addComponent(btnBacktToInventoryMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
-            .addGroup(ContentLayout.createSequentialGroup()
-                .addGap(259, 259, 259)
-                .addComponent(jLabel1)
+        javax.swing.GroupLayout pnelViewInfoLayout = new javax.swing.GroupLayout(pnelViewInfo);
+        pnelViewInfo.setLayout(pnelViewInfoLayout);
+        pnelViewInfoLayout.setHorizontalGroup(
+            pnelViewInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnelViewInfoLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        ContentLayout.setVerticalGroup(
-            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ContentLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnelViewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
+        pnelViewInfoLayout.setVerticalGroup(
+            pnelViewInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+        );
+
+        btnUpdate.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnUpdate.setText("Actualizar");
+        btnUpdate.setEnabled(false);
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnDelete.setText("Borrar");
+        btnDelete.setEnabled(false);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        btnBacktToInventoryMenu.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        btnBacktToInventoryMenu.setText("Volver al Menú de Inventario");
+
+        javax.swing.GroupLayout pnelButtonsLayout = new javax.swing.GroupLayout(pnelButtons);
+        pnelButtons.setLayout(pnelButtonsLayout);
+        pnelButtonsLayout.setHorizontalGroup(
+            pnelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnelButtonsLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBacktToInventoryMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
+        );
+        pnelButtonsLayout.setVerticalGroup(
+            pnelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnelButtonsLayout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addGroup(pnelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete)
+                    .addComponent(btnUpdate)
                     .addComponent(btnBacktToInventoryMenu))
-                .addGap(15, 15, 15))
+                .addGap(16, 16, 16))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addComponent(pnelViewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
+            .addComponent(pnelButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(pnelViewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(pnelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tblComponentsPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tblComponentsPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblComponentsPropertyChange
-
-    private void btnBacktToInventoryMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBacktToInventoryMenuActionPerformed
-        PnelInventory pnelInventory=new PnelInventory();
-        showPanel(pnelInventory);
-    }//GEN-LAST:event_btnBacktToInventoryMenuActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        HardwareComponent selectedComponent = getSelectedComponent();
-        ViewController.deleteComponentInDB(selectedComponent);
-
-    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         HardwareComponent selectedComponent = getSelectedComponent();
         FrmHardwareComponent frmComponentToUpdate = new FrmHardwareComponent(selectedComponent);
         frmComponentToUpdate.setVisible(true);
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        HardwareComponent selectedComponent = getSelectedComponent();
+        ViewController.deleteComponentInDB(selectedComponent);
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void tblComponentsPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tblComponentsPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblComponentsPropertyChange
 
     private void displayTableComponents() {                                          
         ArrayList<HardwareComponent> componentsInDb = ViewController.obtainAllComponents();
@@ -237,21 +223,13 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Content;
     private javax.swing.JButton btnBacktToInventoryMenu;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel pnelButtons;
     private javax.swing.JPanel pnelViewInfo;
     private javax.swing.JTable tblComponents;
     // End of variables declaration//GEN-END:variables
-    private void showPanel(JPanel panelUI) {
-        panelUI.setSize(900, 675);
-        panelUI.setLocation(0, 0);
-        Content.removeAll();
-        Content.add(panelUI, BorderLayout.CENTER);
-        Content.revalidate();
-        Content.repaint();
-    }
 }

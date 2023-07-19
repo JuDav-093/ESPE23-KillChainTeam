@@ -7,11 +7,10 @@ import ec.edu.espe.evsustore.utils.DatabaseManager;
 import java.util.ArrayList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
-import ec.edu.espe.evsustore.model.Clothing;
 import org.bson.Document;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.util.Random;
+
 /**
  *
  * @author Joan Cobeña, KillChain, DCCO-ESPE
@@ -50,12 +49,6 @@ public class DatabaseController {
         
         return componentsCoincidence;
     }
-    public ArrayList<Clothing> obtainClothingsCoincidence(String field){
-        MongoCollection collection = DatabaseManager.connectToCollection(database, "Clothins");
-        ArrayList<Clothing> clothinsCoincidence = DatabaseManager.foundComponentCoincidences(collection, field);
-        
-        return clothinsCoincidence;
-    }
     
     public void update(HardwareComponent component) {
         MongoCollection collection = DatabaseManager.connectToCollection(database, "HardwareComponents");
@@ -81,38 +74,33 @@ public class DatabaseController {
     }
     
 
-    private String currentUsername;
-    private String newPassword;
-
     public boolean checkCredentials(String username, String password) {
-        MongoCollection<Document> collection = DatabaseManager.connectToCollection(database, "Users");
+       MongoCollection<Document> collection = DatabaseManager.connectToCollection(database, "Users");
 
-        BasicDBObject query = new BasicDBObject();
-        query.put("username", username);
+       BasicDBObject query = new BasicDBObject();
+       query.put("username", username);
 
-        Document result = collection.find(query).first();
-        if (result != null) {
-            String storedPassword = result.getString("password");
-            if (storedPassword.startsWith("$2a$")) {
-                if (BCrypt.checkpw(password, storedPassword)) {
-                    currentUsername = username;
-                    return true;
-                }
-            } else {
-                
-                if (password.equals(storedPassword)) {
-              
-                    String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-                    result.put("password", hashedPassword);
-                    collection.replaceOne(new Document("_id", result.get("_id")), result);
-                    currentUsername = username;
-                    return true;
-                }
-            }
-        }
+       Document result = collection.find(query).first();
+       if (result != null) {
+           String storedPassword = result.getString("password");
 
-        return false;
-    }
+           // Verificar si la contraseña está encriptada con BCrypt
+           if (storedPassword.startsWith("$2a$")) {
+               return BCrypt.checkpw(password, storedPassword);
+           } else {
+               // Verificar si la contraseña coincide sin encriptar
+               if (password.equals(storedPassword)) {
+                   // Si la contraseña coincide sin encriptar, actualizar la contraseña en la base de datos a su versión encriptada
+                   String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+                   result.put("password", hashedPassword);
+                   collection.replaceOne(new Document("_id", result.get("_id")), result);
+                   return true;
+               }
+           }
+       }
+
+       return false;
+   }
 
 
     public void migratePasswordsToBCrypt() {
@@ -125,6 +113,7 @@ public class DatabaseController {
         for (Document document : documents) {
             String oldPassword = document.getString("password");
 
+            // Verificar si la contraseña ya está encriptada con BCrypt
             if (!oldPassword.startsWith("$2a$")) {
                 String newPassword = BCrypt.hashpw(oldPassword, BCrypt.gensalt());
                 document.put("password", newPassword);
@@ -136,19 +125,20 @@ public class DatabaseController {
     public boolean createUser(String name, String lastName, String username, String password) {
         MongoCollection<Document> collection = DatabaseManager.connectToCollection(database, "Users");
 
-       
+        // Verificar si el nombre de usuario ya existe en la base de datos
         BasicDBObject query = new BasicDBObject();
         query.put("username", username);
 
         Document existingUser = collection.find(query).first();
         if (existingUser != null) {
-           
+            // El nombre de usuario ya está en uso
             return false;
         }
- 
+
+        // Encriptar la contraseña antes de guardarla en la base de datos
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
-        
+        // Crear un nuevo documento para el usuario
         Document newUser = new Document();
         newUser.append("name", name)
                 .append("lastName", lastName)
@@ -159,96 +149,8 @@ public class DatabaseController {
 
         return true;
     }
-    
-    public boolean changePassword(String confirmPassword) {
-        if (!newPassword.equals(confirmPassword)) {
-            return false;
-        }
-        MongoCollection<Document> collection = DatabaseManager.connectToCollection(database, "Users");
 
-        BasicDBObject query = new BasicDBObject();
-        query.put("username", currentUsername);
-
-        Document user = collection.find(query).first();
-        if (user != null) {
-            String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
-            user.put("password", hashedPassword);
-            collection.replaceOne(new Document("_id", user.get("_id")), user);
-            return true;
-        }
-        return false;
-    }
-    
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
-    }
 
 
     
-    public String getPasswordByUsername(String username) {
-        MongoCollection<Document> collection = DatabaseManager.connectToCollection(database, "Users");
-
-        BasicDBObject query = new BasicDBObject();
-        query.put("username", username);
-
-        Document result = collection.find(query).first();
-        if (result != null) {
-            String hashedPassword = result.getString("password");
-
-            
-            if (hashedPassword.startsWith("$2a$")) {
-               
-                return BCrypt.checkpw("", hashedPassword) ? "" : null;
-            } else {
-                
-                return hashedPassword;
-            }
-        }
-
-        return null;
-    }
-    
-    
-    public String generateTemporaryPassword() {
-        
-        String temporaryPassword = generateRandomPassword();    
-        String hashedPassword = BCrypt.hashpw(temporaryPassword, BCrypt.gensalt());
-        return hashedPassword;
-    }
-    public String generateRandomPassword() {
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        int length = 8;
-
-        StringBuilder password = new StringBuilder();
-        Random random = new Random();
-
-        for (int i = 0; i < length; i++) {
-            int index = random.nextInt(characters.length());
-            password.append(characters.charAt(index));
-        }
-
-        return password.toString();
-    }
-    
-    public boolean updatePassword(String username, String newPassword, String temporaryPassword) {
-        MongoCollection<Document> collection = DatabaseManager.connectToCollection(database, "Users");
-
-        BasicDBObject query = new BasicDBObject();
-        query.put("username", username);
-
-        Document user = collection.find(query).first();
-        if (user != null) {
-           
-            String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
-            user.put("password", hashedPassword);
-            user.put("temporaryPassword", temporaryPassword);
-
-            // Reemplazar el documento en la base de datos
-            collection.replaceOne(new Document("_id", user.get("_id")), user);
-
-            return true;
-        }
-
-        return false;
-    }
 }

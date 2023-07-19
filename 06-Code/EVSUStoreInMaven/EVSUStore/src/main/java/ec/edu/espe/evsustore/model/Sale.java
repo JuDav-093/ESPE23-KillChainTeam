@@ -32,10 +32,6 @@ public class Sale {
         //TODOIId generation based in bills
         return 0;
     }
-
-    public Date getDate() {
-        return date;
-    }
     
     public ArrayList<Clothing> getSoldClothing() {
         return soldClothing;
