@@ -40,6 +40,8 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnBacktToInventoryMenu = new javax.swing.JButton();
+        pnelTableButtons = new javax.swing.JPanel();
+        btnUpdateTble = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(18, 9, 24));
         jPanel1.setForeground(new java.awt.Color(18, 9, 24));
@@ -145,6 +147,32 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
                 .addGap(16, 16, 16))
         );
 
+        pnelTableButtons.setBackground(new java.awt.Color(18, 9, 24));
+
+        btnUpdateTble.setText("Actualizar");
+        btnUpdateTble.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateTbleActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnelTableButtonsLayout = new javax.swing.GroupLayout(pnelTableButtons);
+        pnelTableButtons.setLayout(pnelTableButtonsLayout);
+        pnelTableButtonsLayout.setHorizontalGroup(
+            pnelTableButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnelTableButtonsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnUpdateTble, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
+        );
+        pnelTableButtonsLayout.setVerticalGroup(
+            pnelTableButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnelTableButtonsLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(btnUpdateTble, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -154,11 +182,13 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
                 .addComponent(pnelViewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
             .addComponent(pnelButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnelTableButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(126, 126, 126)
+                .addComponent(pnelTableButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(pnelViewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(pnelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -185,12 +215,16 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         HardwareComponent selectedComponent = getSelectedComponent();
         ViewController.deleteComponentInDB(selectedComponent);
-        
+        displayTableComponents();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tblComponentsPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tblComponentsPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_tblComponentsPropertyChange
+
+    private void btnUpdateTbleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateTbleActionPerformed
+        displayTableComponents();
+    }//GEN-LAST:event_btnUpdateTbleActionPerformed
 
     private void displayTableComponents() {                                          
         ArrayList<HardwareComponent> componentsInDb = ViewController.obtainAllComponents();
@@ -231,9 +265,11 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
     private javax.swing.JButton btnBacktToInventoryMenu;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnUpdateTble;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pnelButtons;
+    private javax.swing.JPanel pnelTableButtons;
     private javax.swing.JPanel pnelViewInfo;
     private javax.swing.JTable tblComponents;
     // End of variables declaration//GEN-END:variables
