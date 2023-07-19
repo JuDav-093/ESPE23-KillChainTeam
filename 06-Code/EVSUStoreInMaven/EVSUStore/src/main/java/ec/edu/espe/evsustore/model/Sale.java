@@ -72,6 +72,14 @@ public class Sale {
     public void setSoldComponents(ArrayList<HardwareComponent> soldComponents) {
         this.soldComponents = soldComponents;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
     
     
 }

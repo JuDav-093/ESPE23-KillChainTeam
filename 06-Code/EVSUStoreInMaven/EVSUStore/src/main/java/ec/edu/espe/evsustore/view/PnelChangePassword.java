@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package ec.edu.espe.evsustore.view;
 
 import ec.edu.espe.evsustore.controller.DatabaseController;
@@ -43,7 +40,7 @@ public class PnelChangePassword extends javax.swing.JPanel {
         jLabel5.setText("Confirmar Contraseña");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        jLabel6.setText("Contraseña");
+        jLabel6.setText("Nueva Contraseña");
 
         btnChangePassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnChangePassword.setText("Confirmar");
@@ -57,7 +54,6 @@ public class PnelChangePassword extends javax.swing.JPanel {
         jLabel2.setText("Cambiar Contraseña");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo-removebg-preview.png"))); // NOI18N
-        jLabel1.setPreferredSize(new java.awt.Dimension(492, 492));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,7 +74,7 @@ public class PnelChangePassword extends javax.swing.JPanel {
                         .addGap(39, 39, 39)
                         .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
                 .addContainerGap(493, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -100,7 +96,7 @@ public class PnelChangePassword extends javax.swing.JPanel {
                         .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1)))
                 .addContainerGap(492, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -111,6 +107,7 @@ public class PnelChangePassword extends javax.swing.JPanel {
 
         DatabaseController databaseController = new DatabaseController();
         databaseController.connectDatabase();
+        
         databaseController.setNewPassword(newPassword); 
 
         boolean passwordChanged = databaseController.changePassword(confirmPassword); // Solo se necesita pasar la confirmación de la contraseña.
@@ -120,6 +117,7 @@ public class PnelChangePassword extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(null, "La nueva contraseña y la confirmación no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
     }//GEN-LAST:event_btnChangePasswordActionPerformed
 
 

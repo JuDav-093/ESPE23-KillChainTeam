@@ -7,83 +7,32 @@ package ec.edu.espe.evsustore.model;
  */
 public class HardwareComponent {
     private int id;
-    private double individualPrice;
-    private double totalPrice;
-    private double individualCost;
-    private double totalCost;
     private int quantity;
+    private double cost;
+    private double price;
     private String name;
     private String model;
     
     @Override
     public String toString() {
-        return id + " || " + name + " " + model + " || Cantidad: " + quantity + 
-                " || Costo de cada unidad: " + individualCost + 
-                " || Precio a vender cada unidad: " + individualPrice;
+        return "";
     }
-    
-    public HardwareComponent() {
-    }
-    
-    public HardwareComponent(int id, double price, int quantity, String model) {
+
+    public HardwareComponent(int id, int quantity, double cost, double price, String name, String model) {
         this.id = id;
-        this.individualPrice = price;
         this.quantity = quantity;
+        this.cost = cost;
+        this.price = price;
+        this.name = name;
         this.model = model;
-        this.totalPrice = calculateTotalCost();
     }
-    
-    public void setTotalPrice() {
-        totalPrice = individualPrice*quantity;
-    }
-    
+
     public int getId() {
         return id;
     }
 
-    public double getIndividualCost() {
-        return individualCost;
-    }
-
-    public double getTotalCost() {
-        calculateTotalCost();
-        return totalCost;
-    }
-    
-    public void calculateTotalCost() {
-        totalCost = individualCost*quantity;
-    }
-    
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setIndividualCost(double individualCost) {
-        this.individualCost = individualCost;
-    }
-
-    public void setTotalCost(double totalCost) {
-        this.totalCost = totalCost;
-    }
-    
-    public void setId() {
-        this.id = generateId();
-    }
-    
-    public int generateId() {
-        JsonFileManager jsonFile = new JsonFileManager("Inventory");
-        int i = jsonFile.searchComponentId() + 1;
-        
-        return i;
-    }
-
-    public double getIndividualPrice() {
-        return individualPrice;
-    }
-
-    public void setIndividualPrice(double individualPrice) {
-        this.individualPrice = individualPrice;
-        setTotalPrice();
     }
 
     public int getQuantity() {
@@ -94,12 +43,20 @@ public class HardwareComponent {
         this.quantity = quantity;
     }
 
-    public String getModel() {
-        return model;
+    public double getCost() {
+        return cost;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getName() {
@@ -110,8 +67,14 @@ public class HardwareComponent {
         this.name = name;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
+    public String getModel() {
+        return model;
     }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+    
+    
     
 }

@@ -95,6 +95,9 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
         );
 
+        pnelButtons.setBackground(new java.awt.Color(18, 9, 24));
+
+        btnUpdate.setBackground(new java.awt.Color(133, 44, 194));
         btnUpdate.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnUpdate.setText("Actualizar");
         btnUpdate.setEnabled(false);
@@ -104,6 +107,7 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
             }
         });
 
+        btnDelete.setBackground(new java.awt.Color(133, 44, 194));
         btnDelete.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnDelete.setText("Borrar");
         btnDelete.setEnabled(false);
@@ -113,6 +117,7 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
             }
         });
 
+        btnBacktToInventoryMenu.setBackground(new java.awt.Color(133, 44, 194));
         btnBacktToInventoryMenu.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         btnBacktToInventoryMenu.setText("Volver al Menú de Inventario");
 
@@ -127,12 +132,12 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBacktToInventoryMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addGap(52, 52, 52))
         );
         pnelButtonsLayout.setVerticalGroup(
             pnelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnelButtonsLayout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addGroup(pnelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete)
                     .addComponent(btnUpdate)
@@ -147,7 +152,7 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(pnelViewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
             .addComponent(pnelButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -155,7 +160,7 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(126, 126, 126)
                 .addComponent(pnelViewInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(pnelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -173,7 +178,7 @@ public class PnelUpdateInventory extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         HardwareComponent selectedComponent = getSelectedComponent();
-        FrmHardwareComponent frmComponentToUpdate = new FrmHardwareComponent(selectedComponent);
+        PnelSaveHardwareComponent frmComponentToUpdate = new PnelSaveHardwareComponent(selectedComponent);
         frmComponentToUpdate.setVisible(true);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
